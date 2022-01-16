@@ -1,0 +1,37 @@
+#app {
+  .aside {
+    height: 100vh;
+    overflow-y: auto;
+    position: relative;
+    background: #304156;
+    transition: width 0.28s;
+
+    .horizontal-collapse-transition {
+      transition: 0s width ease-in-out, 0s padding-left ease-in-out, 0s padding-right ease-in-out;
+    }
+
+    .nest-menu,
+    .nest-menu .el-sub-menu>.el-sub-menu__title {
+      background-color: #1f2d3d !important;
+      &:hover {
+        background-color: #001528 !important;
+      }
+    }
+  }
+}
+
+.el-menu--vertical {
+
+  .el-menu {
+    .el-menu-item {
+      background-color: #304156 !important;
+    }
+  }
+
+  .el-sub-menu>.el-sub-menu__title,
+  .el-menu-item {
+    &:hover {
+      background-color: #001528 !important;
+    }
+  }
+}

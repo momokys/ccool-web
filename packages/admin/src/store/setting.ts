@@ -4,7 +4,7 @@ export const useSetting = defineStore({
   id: 'setting',
   state: () => ({
     sidebar: {
-      minWidth: '58px',
+      minWidth: '64px',
       maxWidth: '210px',
       opened: true
     }

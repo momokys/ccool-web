@@ -3,18 +3,23 @@
     <el-container class="h-screen">
       <el-aside
         class="aside"
-        :style="{ width: sidebar.opened ? sidebar.maxWidth : sidebar.minWidth }"
+        :style="{ width: Sidebar.opened ? Sidebar.maxWidth : Sidebar.minWidth }"
       >
-        Aside
+        <el-scrollbar>
+          <cl-menu
+            :menus="Menus"
+            :collapse="!Sidebar.opened"
+          />
+        </el-scrollbar>
       </el-aside>
       <el-container>
-        <el-header class="h-12 flex items-center shadow">
+        <el-header class="h-12 p-0 flex items-center shadow">
           <div
-            class="flex items-center cursor-pointer"
+            class="w-12 flex justify-center items-center cursor-pointer"
             @click="setting.toggleSidebar"
           >
             <el-icon :size="20">
-              <fold v-if="sidebar.opened" />
+              <fold v-if="Sidebar.opened" />
               <expand v-else />
             </el-icon>
           </div>
@@ -27,12 +32,14 @@
 
 <script lang="ts" setup>
 import { computed } from 'vue'
-import { useSetting } from '@/store'
+import { useSetting, useMenus } from '@/store'
+import { ClMenu } from '@/components/common/menu'
 
 const setting = useSetting()
+const Sidebar = computed(() => setting.sidebar)
 
-const sidebar = computed(() => setting.sidebar)
-
+const menus = useMenus()
+const Menus = computed(() => menus.menus)
 </script>
 
 <script lang="ts">
@@ -40,13 +47,3 @@ export default {
   name: 'Layout'
 }
 </script>
-
-<style lang="less" scoped>
-.aside {
-  height: 100vh;
-  overflow-y: auto;
-  position: relative;
-  background: #304156;
-  transition: width 0.3s;
-}
-</style>
