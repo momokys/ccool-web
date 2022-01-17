@@ -19,9 +19,7 @@ module.exports = {
   ],
   rules: {
     // 'no-tabs': ['error', { allowIndentationTabs: true }]
-    'vue/multi-word-component-names': ['error', {
-      ignores: ['Layout']
-    }]
+    'vue/multi-word-component-names': 'off'
   },
   globals: {
     defineProps: 'readonly',

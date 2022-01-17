@@ -15,6 +15,7 @@
       v-for="item in menus"
       :key="item.path"
       :item="item"
+      :collapse="collapse"
     />
   </el-menu>
 </template>

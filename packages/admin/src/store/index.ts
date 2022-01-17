@@ -7,3 +7,4 @@ export default store
 export * from './setting'
 export * from './menus'
 export * from './views-cache'
+export * from './visited-views'

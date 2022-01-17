@@ -2,6 +2,7 @@ import { App, Plugin } from 'vue'
 import ElementPlus from 'element-plus'
 import * as AllIcons from '@element-plus/icons-vue'
 import 'element-plus/dist/index.css'
+import 'nprogress/nprogress.css'
 
 const mui: Plugin = {
   install (app: App) {

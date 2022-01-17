@@ -45,9 +45,11 @@ importers:
     specifiers:
       '@ccool/ui': workspace:^1.0.0
       '@element-plus/icons-vue': ^0.2.4
+      '@types/nprogress': ^0.2.0
       autoprefixer: ^10.4.2
       element-plus: ^1.3.0-beta.5
       less: ^4.1.2
+      nprogress: ^0.2.0
       pinia: ^2.0.0-rc.10
       postcss: ^8.4.5
       tailwindcss: ^3.0.13
@@ -58,9 +60,11 @@ importers:
       '@ccool/ui': link:../ui
       '@element-plus/icons-vue': registry.npmmirror.com/@element-plus/icons-vue/0.2.4_vue@3.2.26
       element-plus: registry.npmmirror.com/element-plus/1.3.0-beta.5_vue@3.2.26
+      nprogress: registry.npmmirror.com/nprogress/0.2.0
       pinia: registry.npmmirror.com/pinia/2.0.9_typescript@4.5.4+vue@3.2.26
       vue-router: registry.npmmirror.com/vue-router/4.0.12_vue@3.2.26
     devDependencies:
+      '@types/nprogress': registry.npmmirror.com/@types/nprogress/0.2.0
       autoprefixer: registry.npmmirror.com/autoprefixer/10.4.2_postcss@8.4.5
       less: registry.npmmirror.com/less/4.1.2
       postcss: registry.npmmirror.com/postcss/8.4.5
@@ -72,12 +76,16 @@ importers:
     specifiers:
       '@ccool/ui': workspace:^1.0.0
       '@element-plus/icons-vue': ^0.2.4
+      '@types/nprogress': ^0.2.0
       element-plus: ^1.3.0-beta.5
+      nprogress: ^0.2.0
     dependencies:
       '@ccool/ui': 'link:'
     devDependencies:
       '@element-plus/icons-vue': registry.npmmirror.com/@element-plus/icons-vue/0.2.4_vue@3.2.26
+      '@types/nprogress': registry.npmmirror.com/@types/nprogress/0.2.0
       element-plus: registry.npmmirror.com/element-plus/1.3.0-beta.5_vue@3.2.26
+      nprogress: registry.npmmirror.com/nprogress/0.2.0
 
   packages/utils:
     specifiers:
@@ -1951,6 +1959,12 @@ packages:
     version: 17.0.8
     dev: true
 
+  registry.npmmirror.com/@types/nprogress/0.2.0:
+    resolution: {integrity: sha512-1cYJrqq9GezNFPsWTZpFut/d4CjpZqA0vhqDUPFWYKF1oIyBz5qnoYMzR+0C/T96t3ebLAC1SSnwrVOm5/j74A==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/nprogress/download/@types/nprogress-0.2.0.tgz}
+    name: '@types/nprogress'
+    version: 0.2.0
+    dev: true
+
   registry.npmmirror.com/@types/parse-json/4.0.0:
     resolution: {integrity: sha1-L4u0QUNNFjs1+4/9zNcTiSf/uMA=, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/@types/parse-json/download/@types/parse-json-4.0.0.tgz}
     name: '@types/parse-json'
@@ -3336,6 +3350,11 @@ packages:
     resolution: {integrity: sha1-qAlttqVvlDMtiE/Y6+2ojy/HlWk=, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/normalize-wheel-es/download/normalize-wheel-es-1.1.1.tgz}
     name: normalize-wheel-es
     version: 1.1.1
+
+  registry.npmmirror.com/nprogress/0.2.0:
+    resolution: {integrity: sha512-I19aIingLgR1fmhftnbWWO3dXc0hSxqHQHQb3H8m+K3TnEn/iSeTZZOyvKXWqQESMwuUVnatlCnZdLBZZt2VSA==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/nprogress/download/nprogress-0.2.0.tgz}
+    name: nprogress
+    version: 0.2.0
 
   registry.npmmirror.com/object-inspect/1.12.0:
     resolution: {integrity: sha512-Ho2z80bVIvJloH+YzRmpZVQe87+qASmBUKZDWgx9cu+KDrX2ZDH/3tMy+gXbZETVGs2M8YdxObOh7XAtim9Y0g==, registry: https://registry.npm.taobao.org/, tarball: https://registry.npmmirror.com/object-inspect/download/object-inspect-1.12.0.tgz}

@@ -21,8 +21,20 @@
       :index="item.path"
       :class="{ 'nest-menu': isNest }"
     >
-      <cl-icon :icon="item.icon" />
-      <span>{{ item.title }}</span>
+      <template v-if="collapse">
+        <el-tooltip
+          :content="item.title"
+          :offset="32"
+          placement="right"
+        >
+          <cl-icon :icon="item.icon" />
+          <span>{{ item.title }}</span>
+        </el-tooltip>
+      </template>
+      <template v-else>
+        <cl-icon :icon="item.icon" />
+        <span>{{ item.title }}</span>
+      </template>
     </el-menu-item>
   </template>
 </template>
@@ -39,6 +51,10 @@ defineProps({
     required: true
   },
   isNest: {
+    type: Boolean as PropType<boolean>,
+    default: false
+  },
+  collapse: {
     type: Boolean as PropType<boolean>,
     default: false
   }

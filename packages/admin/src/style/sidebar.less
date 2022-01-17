@@ -3,18 +3,27 @@
     height: 100vh;
     overflow-y: auto;
     position: relative;
-    background: #304156;
+    background: @menuBgColor;
     transition: width 0.28s;
 
+    // reset element-ui css
     .horizontal-collapse-transition {
-      transition: 0s width ease-in-out, 0s padding-left ease-in-out, 0s padding-right ease-in-out;
+      transition: width 0s ease-in-out;
+    }
+
+
+    .el-sub-menu>.el-sub-menu__title,
+    .el-menu-item {
+      &:hover {
+        background-color: @menuHoverBgColor !important;
+      }
     }
 
     .nest-menu,
     .nest-menu .el-sub-menu>.el-sub-menu__title {
-      background-color: #1f2d3d !important;
+      background-color: @subMenuBgColor !important;
       &:hover {
-        background-color: #001528 !important;
+        background-color: @subMenuHoverBgColor !important;
       }
     }
   }
@@ -24,14 +33,14 @@
 
   .el-menu {
     .el-menu-item {
-      background-color: #304156 !important;
+      background-color: @menuBgColor !important;
     }
   }
 
   .el-sub-menu>.el-sub-menu__title,
   .el-menu-item {
     &:hover {
-      background-color: #001528 !important;
+      background-color: @subMenuHoverBgColor !important;
     }
   }
 }
