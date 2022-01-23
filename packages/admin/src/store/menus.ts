@@ -8,7 +8,7 @@ export const useMenus = defineStore({
       {
         path: '/examples',
         title: '样例演示',
-        icon: 'DataBoard',
+        icon: 'el-icon-data-board',
         children: [
           {
             path: '/examples/form',
@@ -19,12 +19,12 @@ export const useMenus = defineStore({
       {
         path: '/system/index',
         title: '系统管理',
-        icon: 'Operation'
+        icon: 'el-icon-operation'
       },
       {
         path: '/my-task/index',
         title: '我的任务',
-        icon: 'Checked'
+        icon: 'el-icon-checked'
       }
     ] as MenuItemType[]
   })

@@ -1,6 +1,6 @@
 <template>
   <h1 class="text-center">
-    正在施工
+    正在施工...
   </h1>
 </template>
 

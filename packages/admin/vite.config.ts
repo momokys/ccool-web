@@ -5,6 +5,7 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import { svgBuilder } from './src/plugins/svg-builder'
 
 export default defineConfig({
   root: process.cwd(),
@@ -32,6 +33,7 @@ export default defineConfig({
       resolvers: [
         ElementPlusResolver()
       ]
-    })
+    }),
+    svgBuilder('./src/assets/icons/')
   ]
 })

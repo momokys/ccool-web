@@ -1,3 +1,3 @@
 export * from './install'
-export * from './icon'
 export * from './form'
+export * from './button-group'

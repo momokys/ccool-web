@@ -42,7 +42,6 @@
 <script lang="ts" setup>
 import { PropType } from 'vue'
 import _ from 'lodash'
-import { ClIcon } from '@ccool/ui'
 import { MenuItemType } from './type'
 
 defineProps({

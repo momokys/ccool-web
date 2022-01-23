@@ -1,5 +1,5 @@
 {
-  "name": "@ccool/utils",
+  "name": "@ccool/plugins",
   "version": "1.0.0",
   "description": "",
   "main": "index.ts",
@@ -8,5 +8,9 @@
   },
   "keywords": [],
   "author": "momoky",
-  "license": "MIT"
+  "license": "MIT",
+  "dependencies": {
+    "fs": "^0.0.1-security",
+    "svg-sprite-loader": "^6.0.11"
+  }
 }

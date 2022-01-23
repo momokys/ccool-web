@@ -20,7 +20,6 @@
 
 <script lang="ts" setup>
 import { ref, reactive } from 'vue'
-import { ClIcon } from '@ccool/ui'
 
 const active = ref('/system')
 

@@ -9,9 +9,6 @@
   "keywords": [],
   "author": "momoky",
   "license": "MIT",
-  "dependencies": {
-    "@ccool/ui": "workspace:^1.0.0"
-  },
   "devDependencies": {
     "@element-plus/icons-vue": "^0.2.4",
     "@types/nprogress": "^0.2.0",

@@ -9,7 +9,7 @@
       @click.stop="emit('refresh')"
     >
       <cl-icon
-        icon="Refresh"
+        icon="el-icon-refresh"
         :size="14"
       />
     </span>
@@ -19,7 +19,7 @@
       @click.stop="emit('cancel')"
     >
       <cl-icon
-        icon="Close"
+        icon="el-icon-close"
         :size="14"
       />
     </span>
@@ -28,7 +28,6 @@
 
 <script lang="ts" setup>
 import { computed, PropType } from 'vue'
-import { ClIcon } from '@ccool/ui'
 import { VisitedViewType } from '@/store'
 
 const props = defineProps({

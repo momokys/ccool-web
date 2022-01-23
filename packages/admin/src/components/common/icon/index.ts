@@ -1,9 +1,11 @@
 import Icon from './src/icon.vue'
+import Svg from './src/svg.vue'
 import type { App } from 'vue'
 import { SFCWithInstall } from 'element-plus/es/utils/types'
 import { ClOptionsType } from 'ui/types/common'
 
 Icon.install = (app: App, options: ClOptionsType) => {
+  app.component('ClSvg', Svg)
   app.component('ClIcon', Icon)
 }
 

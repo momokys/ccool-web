@@ -10,7 +10,7 @@
   "author": "momoky",
   "license": "MIT",
   "dependencies": {
-    "@ccool/ui": "workspace:^1.0.0",
+    "@ccool/utils": "workspace:^1.0.0",
     "lodash": "^4.17.21",
     "vue": "^3.2.25"
   },

@@ -1,9 +1,6 @@
-import { App, VNodeTypes } from 'vue'
-
-export type ResolveIconFn = (icon?: string) => VNodeTypes
+import { App } from 'vue'
 
 export type ClOptionsType = {
-  resolveIcon?: ResolveIconFn
 }
 
 export type IntstallFn = (app: App, options: ClOptionsType) => void
