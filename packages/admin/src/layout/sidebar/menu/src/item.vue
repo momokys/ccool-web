@@ -8,7 +8,7 @@
         <cl-icon :icon="item.icon" />
         <span>{{ item.title }}</span>
       </template>
-      <cl-menu-item
+      <side-menu-item
         v-for="child in item.children"
         :key="child.path"
         :item="child"
@@ -42,7 +42,7 @@
 <script lang="ts" setup>
 import { PropType } from 'vue'
 import _ from 'lodash'
-import { ClIcon } from '../../icon'
+import { ClIcon } from '@ccool/ui'
 import { MenuItemType } from './type'
 
 defineProps({
@@ -68,6 +68,6 @@ function hasChild (item: MenuItemType) {
 
 <script lang="ts">
 export default {
-  name: 'ClMenuItem'
+  name: 'SideMenuItem'
 }
 </script>

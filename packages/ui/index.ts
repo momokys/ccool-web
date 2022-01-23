@@ -1,16 +1,7 @@
-import { App, Plugin } from 'vue'
-import ElementPlus from 'element-plus'
-import * as AllIcons from '@element-plus/icons-vue'
+import clui from './install'
 import 'element-plus/dist/index.css'
 import 'nprogress/nprogress.css'
 
-const mui: Plugin = {
-  install (app: App) {
-    app.use(ElementPlus)
-    Object.entries(AllIcons).forEach(([iconName, icon]) => {
-      app.component(iconName, icon)
-    })
-  }
-}
-
-export default mui
+export default clui
+export * from './components'
+export * from './types'

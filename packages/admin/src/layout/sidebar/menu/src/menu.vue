@@ -11,7 +11,7 @@
     :background-color="backgroundColor"
     style="border-right: none;"
   >
-    <cl-menu-item
+    <side-menu-item
       v-for="item in menus"
       :key="item.path"
       :item="item"
@@ -23,7 +23,7 @@
 <script lang="ts" setup>
 import { PropType } from 'vue'
 import { MenuItemType } from './type'
-import ClMenuItem from './item.vue'
+import SideMenuItem from './item.vue'
 
 defineProps({
   menus: {
@@ -60,13 +60,13 @@ defineProps({
   },
   activeTextColor: {
     type: String as PropType<string>,
-    default: '#409ef4'
+    default: '#60a5fa'
   }
 })
 </script>
 
 <script lang="ts">
 export default {
-  name: 'ClMenu'
+  name: 'SideMenu'
 }
 </script>

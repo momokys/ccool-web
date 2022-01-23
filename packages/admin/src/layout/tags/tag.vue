@@ -28,7 +28,7 @@
 
 <script lang="ts" setup>
 import { computed, PropType } from 'vue'
-import { ClIcon } from '@/components/common/icon'
+import { ClIcon } from '@ccool/ui'
 import { VisitedViewType } from '@/store'
 
 const props = defineProps({
@@ -89,8 +89,8 @@ const classObj = computed(() => ({
     display: none;
     transition: color 0.3s, background-color 0.3s;
     &:hover {
-      color: #fff;
-      background-color: #b4bccc;
+      color: #60a5fa;
+      // background-color: #b4bccc;
     }
   }
 
@@ -99,13 +99,17 @@ const classObj = computed(() => ({
   }
 
   &.active {
-    background-color: #42b983;
-    border-color: #42b983;
+    background-color: #60a5fa;
+    border-color: #60a5fa;
     color: #fff;
 
     .refresh-btn,
     .cancel-btn {
       color: #fff;
+      &:hover {
+        color: #60a5fa;
+        background-color: #EFF6FF;
+      }
     }
 
     .refresh-btn {

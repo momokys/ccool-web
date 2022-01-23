@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { MenuItemType } from '@/components/common/menu'
+import { MenuItemType } from '@/layout/sidebar/menu'
 
 export const useMenus = defineStore({
   id: 'menus',

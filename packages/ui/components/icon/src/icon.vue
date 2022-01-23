@@ -33,6 +33,7 @@ defineProps({
 
 <script lang="ts">
 export default {
-  name: 'ClIcon'
+  name: 'ClIcon',
+  loading: true
 }
 </script>

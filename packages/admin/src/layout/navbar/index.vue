@@ -1,7 +1,7 @@
 <template>
   <div class="h-12 w-full p-0 flex items-center shadow-sm">
     <div
-      class="w-12 flex justify-center items-center cursor-pointer"
+      class="h-12 w-12 flex justify-center items-center cursor-pointer"
       @click="setting.toggleSidebar"
     >
       <el-icon :size="20">
@@ -9,12 +9,14 @@
         <expand v-else />
       </el-icon>
     </div>
+    <nav-menu />
   </div>
 </template>
 
 <script lang="ts" setup>
 import { computed } from 'vue'
 import { useSetting } from '@/store'
+import NavMenu from './nav-menu.vue'
 
 const setting = useSetting()
 const Sidebar = computed(() => setting.sidebar)

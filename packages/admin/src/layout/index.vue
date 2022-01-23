@@ -3,17 +3,9 @@
     <el-container class="h-screen">
       <el-aside
         class="aside"
-        :style="{ width: Sidebar.opened ? Sidebar.maxWidth : Sidebar.minWidth }"
+        :style="{ width: setting.sidebar.opened ? setting.sidebar.maxWidth : setting.sidebar.minWidth }"
       >
-        <el-scrollbar>
-          <cl-menu
-            :router="true"
-            :menus="Menus"
-            :default-active="route.path"
-            :default-openeds="openedList"
-            :collapse="!Sidebar.opened"
-          />
-        </el-scrollbar>
+        <sidebar />
       </el-aside>
       <el-container>
         <el-header class="h-20 p-0">
@@ -22,15 +14,7 @@
         </el-header>
         <el-main>
           <router-view v-slot="{ Component }">
-            <transition
-              name="fade-transform"
-              mode="out-in"
-              appear
-            >
-              <keep-alive>
-                <component :is="Component" />
-              </keep-alive>
-            </transition>
+            <cl-view :com="Component" />
           </router-view>
         </el-main>
       </el-container>
@@ -39,21 +23,14 @@
 </template>
 
 <script lang="ts" setup>
-import { computed } from 'vue'
-import { useRoute } from 'vue-router'
-import { useSetting, useMenus } from '@/store'
-import { ClMenu } from '@/components/common/menu'
+import { useSetting } from '@/store'
+import Sidebar from './sidebar/index.vue'
+import { ClView } from '@/components/common/view'
 import Navbar from './navbar/index.vue'
 import Tags from './tags/index.vue'
 
-const route = useRoute()
-const openedList = computed(() => route.matched.map(item => item.path))
-
 const setting = useSetting()
-const Sidebar = computed(() => setting.sidebar)
 
-const menus = useMenus()
-const Menus = computed(() => menus.menus)
 </script>
 
 <script lang="ts">
