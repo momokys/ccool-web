@@ -6,11 +6,6 @@ export const useMenus = defineStore({
   state: () => ({
     menus: [
       {
-        path: '/test/index',
-        title: '测试',
-        icon: 'el-icon-setting'
-      },
-      {
         path: '/examples',
         title: '样例演示',
         icon: 'el-icon-data-board',
@@ -34,6 +29,11 @@ export const useMenus = defineStore({
         path: '/my-task/index',
         title: '我的任务',
         icon: 'el-icon-checked'
+      },
+      {
+        path: '/test/index',
+        title: '测试',
+        icon: 'el-icon-setting'
       }
     ] as MenuItemType[]
   })

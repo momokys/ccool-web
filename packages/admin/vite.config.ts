@@ -9,6 +9,7 @@ import WindiCSS from 'vite-plugin-windicss'
 import { svgBuilder } from './src/plugins/svg-builder'
 
 export default defineConfig({
+  base: '/ccool',
   root: process.cwd(),
   resolve: {
     alias: {

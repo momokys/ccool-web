@@ -4,7 +4,7 @@ import { globalBeforeGuard, globalAfterEach } from './guard'
 
 const router = createRouter({
   routes,
-  history: createWebHistory()
+  history: createWebHistory('/ccool')
 })
 
 router.beforeEach(globalBeforeGuard(router))
