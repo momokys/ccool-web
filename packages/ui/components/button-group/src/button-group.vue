@@ -13,6 +13,7 @@
         :key="index"
         :size="size"
         :loading="loadingMap[index]"
+        :disabled="!loadingMap[index] && loading"
         v-bind="item.attrs"
         @click="handleClick(index, item)"
       >
@@ -30,6 +31,8 @@ const props = defineProps(buttonGroupProps)
 
 const loadingMap = ref<Record<number, boolean>>({})
 
+const loading = ref<boolean>(false)
+
 watch(
   () => props.btnItems,
   () => {
@@ -38,14 +41,17 @@ watch(
 )
 
 function handleClick (index: number, item: BtnItem) {
+  if (loading.value) return
   if (item.handle) {
     if (item.loadable) {
       loadingMap.value[index] = true
+      loading.value = true
     }
     item.handle({
       done: () => {
         if (item.loadable) {
           loadingMap.value[index] = false
+          loading.value = false
         }
       }
     })

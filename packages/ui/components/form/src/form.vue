@@ -1,23 +1,29 @@
 <template>
   <div class="cl-form">
     <div class="cl-form__header" />
-    <div class="cl-form__body">
-      <el-form
-        ref="formRef"
-        :model="model"
-        :label-width="labelWidth"
-        :label-position="labelPosition"
-      >
-        <el-row>
-          <el-col
-            v-for="item in FormItems"
-            :key="item"
-            :span="item.span || 12"
-          >
-            <cl-form-item :form-item="item" />
-          </el-col>
-        </el-row>
-      </el-form>
+    <div
+      class="cl-form__body"
+      :style="{ height: Height }"
+    >
+      <el-scrollbar>
+        <el-form
+          ref="formRef"
+          :model="model"
+          :label-width="labelWidth"
+          :label-position="labelPosition"
+          style="padding-right: 20px;"
+        >
+          <el-row :gutter="gutter">
+            <el-col
+              v-for="item in FormItems"
+              :key="item"
+              :span="item.span || 12"
+            >
+              <cl-form-item :form-item="item" />
+            </el-col>
+          </el-row>
+        </el-form>
+      </el-scrollbar>
     </div>
   </div>
 </template>
@@ -43,6 +49,10 @@ const FormItems = computed(() => {
   })
 })
 
+const Height = computed(() => {
+  return props.height
+})
+
 </script>
 
 <script lang="ts">
@@ -50,3 +60,13 @@ export default {
   name: 'ClForm'
 }
 </script>
+
+<style lang="less">
+.cl-form {
+  &__body {
+    .el-scrollbar>.el-scrollbar__bar.is-horizontal {
+      display: none !important;
+    }
+  }
+}
+</style>

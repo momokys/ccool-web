@@ -28,6 +28,21 @@ const routes: RouteRecordRaw[] = [
     ]
   },
   {
+    path: '/test',
+    redirect: '/test/index',
+    component: Layout,
+    children: [
+      {
+        path: '/test/index',
+        name: 'Test',
+        meta: {
+          title: '测试'
+        },
+        component: () => import('@/views/test/index.vue')
+      }
+    ]
+  },
+  {
     path: '/examples',
     redirect: '/examples/form',
     component: Layout,
@@ -39,6 +54,14 @@ const routes: RouteRecordRaw[] = [
           title: '动态表单'
         },
         component: () => import('@/views/examples/form.vue')
+      },
+      {
+        path: '/examples/layer',
+        name: 'ExampleLayer',
+        meta: {
+          title: '命令式弹窗'
+        },
+        component: () => import('@/views/examples/layer.vue')
       }
     ]
   },

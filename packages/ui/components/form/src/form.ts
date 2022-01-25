@@ -37,11 +37,18 @@ export const formProps = {
     type: Array as PropType<FormItem[]>,
     default: () => ([])
   },
+  gutter: {
+    type: Number,
+    default: 20
+  },
   labelWidth: {
     type: [String, Number] as PropType<string | number>
   },
   labelPosition: {
     type: String as PropType<'left' | 'right' | 'top'>
+  },
+  height: {
+    type: String
   }
 }
 

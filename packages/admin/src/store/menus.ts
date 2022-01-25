@@ -6,6 +6,11 @@ export const useMenus = defineStore({
   state: () => ({
     menus: [
       {
+        path: '/test/index',
+        title: '测试',
+        icon: 'el-icon-setting'
+      },
+      {
         path: '/examples',
         title: '样例演示',
         icon: 'el-icon-data-board',
@@ -13,6 +18,10 @@ export const useMenus = defineStore({
           {
             path: '/examples/form',
             title: '动态表单'
+          },
+          {
+            path: '/examples/layer',
+            title: '命令式弹窗'
           }
         ]
       },

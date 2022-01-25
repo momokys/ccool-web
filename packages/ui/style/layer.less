@@ -1,0 +1,14 @@
+#cl-layer-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 2000;
+  width: 0;
+  height: 0;
+  background-color: transparent;
+  transition: background-color .6s;
+  cursor: pointer;
+  &.mask {
+    background-color: #00000080;
+  }
+}
