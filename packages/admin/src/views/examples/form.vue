@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="flex mb-10">
-      <div class="w-1/4 mr-5">
+      <div class="w-1/2 mr-5">
         <cl-form
           :model="meta"
           :form-items="mFi"
@@ -32,21 +32,41 @@ import {
   ClComs,
   FormItem
 } from '@ccool/ui'
+import { components } from '@/constant/components'
 
-const meta = reactive<Record<string, string>>({
+const meta = reactive({
   label: '属性',
-  prop: 'prop'
+  index: 'prop',
+  com: ClComs.INPUT
 })
 const mFi: FormItem[] = [
   {
     com: ClComs.INPUT,
     index: 'label',
-    label: '标签'
+    label: '标签',
+    span: 8
   },
   {
     com: ClComs.INPUT,
-    index: 'prop',
-    label: '属性名'
+    index: 'index',
+    label: '属性名',
+    span: 8
+  },
+  {
+    com: ClComs.SELECT,
+    index: 'com',
+    label: '组件',
+    span: 8,
+    attrs: {
+      full: true,
+      options: components,
+      onClear: () => {
+        console.log('ewfewf')
+      },
+      style: {
+        width: '200px'
+      }
+    }
   }
 ]
 
@@ -78,11 +98,7 @@ const formItems = reactive<FormItem[]>([
 ])
 
 function handleClick () {
-  if (meta.label.length < 0 || meta.prop.length < 0) return
-  formItems.push({
-    com: ClComs.INPUT,
-    label: meta.label,
-    index: meta.prop
-  })
+  if (meta.label.length < 0 || meta.index.length < 0) return
+  formItems.push({ ...meta })
 }
 </script>

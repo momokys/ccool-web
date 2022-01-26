@@ -1,4 +1,5 @@
-export enum ClComs {
-  INPUT = 'ElInput',
-  BUTTON = 'ElButton'
+export const ClComs = {
+  INPUT: 'ElInput',
+  BUTTON: 'ElButton',
+  SELECT: 'ClSelect'
 }
