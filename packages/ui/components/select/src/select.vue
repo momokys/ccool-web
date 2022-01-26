@@ -15,14 +15,9 @@
 </template>
 
 <script lang="ts" setup>
-import { getCurrentInstance, onMounted } from 'vue'
 import { selectProps } from './select-type'
 
 defineProps(selectProps)
-
-onMounted(() => {
-  console.log(getCurrentInstance())
-})
 
 const emit = defineEmits([
   'update:modelValue',

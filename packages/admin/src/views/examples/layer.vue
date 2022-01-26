@@ -12,6 +12,12 @@
     >
       有遮罩
     </el-button>
+    <el-button
+      type="primary"
+      @click="asyncOpen"
+    >
+      异步加载组件
+    </el-button>
   </div>
 </template>
 
@@ -69,6 +75,9 @@ function handleClick (shade: boolean) {
       {
         text: '确定',
         loadable: true,
+        attrs: {
+          type: 'primary'
+        },
         handle: ({ done }) => {
           setTimeout(() => {
             done()
@@ -80,4 +89,13 @@ function handleClick (shade: boolean) {
     ]
   })
 }
+
+function asyncOpen () {
+  layer.open({
+    width: '60%',
+    height: '600px',
+    content: () => import('./form.vue')
+  })
+}
+
 </script>

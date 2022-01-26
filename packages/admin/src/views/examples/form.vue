@@ -127,10 +127,10 @@ const btns: BtnItem[] = [
 
 function handleClick () {
   if (meta.label.length < 0 || meta.index.length < 0) return
-  if (meta.com === ClComs.SELECT || meta.com === ClComs.CHECKBOX_GROUP) {
+  if (meta.com === ClComs.SELECT || meta.com === ClComs.CHECKBOX_GROUP || meta.com === ClComs.RADIO_GROUP) {
     formItems.value.push({
       ...meta,
-      value: [],
+      value: meta.com === ClComs.RADIO_GROUP ? '' : [],
       attrs: {
         options: [
           { label: '选项1', value: 'option1' },

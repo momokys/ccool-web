@@ -1,4 +1,4 @@
-import { App, ComponentInternalInstance, VNode, createVNode, render, nextTick } from 'vue'
+import { App, Component, ComponentInternalInstance, VNode, createVNode, render, nextTick, AsyncComponentLoader } from 'vue'
 import { ElMessage } from 'element-plus'
 import { bus } from './bus'
 import Layer from './layer.vue'
@@ -11,9 +11,10 @@ let container: HTMLDivElement
 let instance: ComponentInternalInstance
 let hidden: boolean = true
 
-type LayerOptions = {
-  shade?: boolean
-} & Partial<LayerProps>
+type LayerOptions = Partial<LayerProps> & {
+  shade?: boolean,
+  content?: string | Component | AsyncComponentLoader
+}
 
 let curops: LayerOptions
 

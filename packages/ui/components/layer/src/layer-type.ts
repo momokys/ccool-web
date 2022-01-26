@@ -1,4 +1,4 @@
-import { Component, PropType, ExtractPropTypes, VNode } from 'vue'
+import { Component, PropType, ExtractPropTypes, AsyncComponentLoader } from 'vue'
 import { BtnItem } from '../../button-group'
 
 export const layerProps = {
@@ -7,11 +7,11 @@ export const layerProps = {
     default: false
   },
   title: {
-    type: [String, Object] as PropType<string | VNode | Component>,
+    type: [String, Object] as PropType<string | Component>,
     default: '标题'
   },
   content: {
-    type: [String, Object] as PropType<string | VNode | Component>,
+    type: [String, Object] as PropType<string | Component | AsyncComponentLoader>,
     default: '内容'
   },
   btns: {

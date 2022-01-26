@@ -17,7 +17,7 @@
       </div>
       <div class="cl-layer__content">
         <template v-if="typeof content !== 'string'">
-          <component :is="content" />
+          <component :is="Content" />
         </template>
         <template v-else>
           {{ content }}
@@ -31,13 +31,28 @@
 </template>
 
 <script lang="ts" setup>
-import { ref } from 'vue'
+import { ref, computed, defineAsyncComponent, AsyncComponentLoader } from 'vue'
+import _ from 'lodash'
 import { bus } from './bus'
 import { ClButtonGroup } from '../../button-group'
 import { layerProps } from './layer-type'
 
-defineProps(layerProps)
+const props = defineProps(layerProps)
 
+const Content = computed(() => {
+  if (_.isFunction(props.content)) {
+    const content = props.content
+    // 异步加载
+    const com = (content as AsyncComponentLoader)()
+    if (_.isObject(com) && _.isFunction(com.then) && _.isFunction(com.catch)) {
+      return defineAsyncComponent(() => com)
+    } else {
+      return com
+    }
+  } else {
+    return props.content
+  }
+})
 const nativeVisible = ref<boolean>(false)
 
 function handleClose () {
