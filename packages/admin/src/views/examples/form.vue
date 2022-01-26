@@ -29,7 +29,10 @@
         class="w-1/2"
         style="max-height: 600px;"
       >
-        <vue-json-view :src="formData" />
+        <vue-json-view
+          :src="formData"
+          :theme="'apathy:inverted'"
+        />
       </div>
     </div>
   </div>
