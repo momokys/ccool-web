@@ -8,7 +8,30 @@ export type FormContext = {
   props: any,
   formRef: Ref<InstanceType<typeof ElForm>>,
   validate: () => Promise<boolean>,
-  validateField: () => void
+  validateField: (props: string | string[]) => void,
+  resetFields: () => void,
+  scrollToFields: (prop: string) => void,
+  clearVlidate: (props: string | string[]) => void
+}
+
+export type DataType = 'string' | 'number' | 'boolean' | 'method' | 'regexp' | 'integer' | 'float' | 'array' | 'object' | 'enum' | 'date' | 'url' | 'hex' | 'email' | 'pattern' | 'any'
+
+export type Rule = {
+  type?: DataType,
+  required?: boolean,
+  pattern?: RegExp | string,
+  min?: number,
+  max?: number,
+  len?: number,
+  enum?: Array<string | number | boolean | null | undefined>,
+  whitespace?: boolean,
+  fields?: Record<string, Rule | Rule[]>,
+  defaultField?: Rule;
+  transform?: (value: any) => any,
+  message?: string | ((a?: string) => string),
+  asyncValidator?: (props: { fctx: FormContext, value: any }) => void,
+  validator?: (props: { fctx: FormContext, value: any }) => void,
+  trigger: 'blur' | 'change'
 }
 
 export type Base = {
@@ -23,15 +46,15 @@ export type FormItem = {
   span?: number,
   index?: string,
   value?: any,
-  rule?: Record<string, any>,
-  rules?: Record<string, any>[],
+  rule?: Rule,
+  rules?: Rule[],
   hidden?: (model: any) => boolean
 } & Base
 
 export const formProps = {
   model: {
     type: Object as PropType<Record<string, any>>,
-    default: () => ({})
+    required: true
   },
   extra: {
     type: Object as PropType<any>
@@ -75,11 +98,20 @@ export function useFormContext (
     extra: props.extra,
     props: props,
     formRef: formRef,
-    validate: () => {
+    validate () {
       return formRef!.value!.validate() as Promise<boolean>
     },
-    validateField: () => {
-
+    validateField (props: string | string[]) {
+      formRef.value.validateField(props, () => {})
+    },
+    resetFields () {
+      formRef.value.resetFields()
+    },
+    scrollToFields (prop: string) {
+      formRef.value.scrollToField(prop)
+    },
+    clearVlidate (props: string | string[]) {
+      formRef.value.clearValidate(props)
     }
   }
 }

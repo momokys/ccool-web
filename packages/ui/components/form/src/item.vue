@@ -31,6 +31,10 @@ import _ from 'lodash'
 import { FormItem, FormContext, clFormKey } from './form'
 
 const props = defineProps({
+  model: {
+    type: Object as PropType<any>,
+    required: true
+  },
   formItem: {
     type: Object as PropType<FormItem>,
     default: () => ({})
@@ -39,7 +43,7 @@ const props = defineProps({
 
 const fctx = inject<FormContext>(clFormKey)
 
-const Model = computed(() => fctx?.model)
+const Model = computed(() => props.model)
 
 const Rules = computed(() => {
   const formItem = props.formItem
@@ -56,9 +60,12 @@ const Rules = computed(() => {
       return {
         ..._rule,
         validator: (value: any, callback: any) => {
-          const result = _rule.validator({ value, ...fctx })
-          if (result) callback(result)
-          else callback()
+          try {
+            _rule.validator({ value, fctx })
+            callback()
+          } catch (error) {
+            callback(error)
+          }
         }
       }
     } else {
