@@ -9,7 +9,7 @@ import WindiCSS from 'vite-plugin-windicss'
 import { svgBuilder } from './src/plugins/svg-builder'
 
 export default defineConfig({
-  base: '/ccool',
+  base: '/ccool/',
   root: process.cwd(),
   resolve: {
     alias: {
@@ -23,6 +23,29 @@ export default defineConfig({
         // 搜索工作区的根目录
         searchForWorkspaceRoot(process.cwd())
       ]
+    }
+  },
+  build: {
+    minify: 'terser',
+    brotliSize: false,
+    sourcemap: false,
+    terserOptions: {
+      compress: {
+        drop_console: true,
+        drop_debugger: true
+      }
+    },
+    rollupOptions: {
+      output: {
+        manualChunks: (id: string) => {
+          if (id.includes('node_modules')) {
+            return id.toString()
+              .split('node_modules/')[1]
+              .split('/')[0]
+              .toString()
+          }
+        }
+      }
     }
   },
   plugins: [
