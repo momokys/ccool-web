@@ -17,7 +17,7 @@
             <el-col
               v-for="item in FormItems"
               :key="item"
-              :span="item.span || 12"
+              :span="item.span || (24 / cloumn)"
             >
               <cl-form-item
                 :model="model"

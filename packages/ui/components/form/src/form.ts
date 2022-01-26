@@ -79,6 +79,14 @@ export const formProps = {
   maxHeight: {
     type: String
   },
+  cloumn: {
+    type: Number,
+    default: 2,
+    validator (value: number) {
+      const set = new Set([1, 2, 3, 4])
+      return set.has(value)
+    }
+  },
   btns: {
     type: Array as PropType<BtnItem[]>,
     default: () => ([])
