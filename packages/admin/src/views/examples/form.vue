@@ -18,19 +18,22 @@
       <cl-form
         :model="formData"
         :form-items="formItems"
+        :btns="btns"
         :label-width="100"
         :label-position="'left'"
-        :height="'500px'"
+        :max-height="'500px'"
       />
     </div>
   </div>
 </template>
 
 <script lang="tsx" setup>
-import { reactive } from 'vue'
+import { ref, reactive } from 'vue'
 import {
   ClComs,
-  FormItem
+  layer,
+  FormItem,
+  BtnItem
 } from '@ccool/ui'
 import { components } from '@/constant/components'
 
@@ -70,8 +73,8 @@ const mFi: FormItem[] = [
   }
 ]
 
-const formData = reactive<any>({})
-const formItems = reactive<FormItem[]>([
+const formData = ref<any>({})
+const defaultFormItems: FormItem[] = [
   {
     com: ClComs.INPUT,
     index: 'username',
@@ -95,10 +98,48 @@ const formItems = reactive<FormItem[]>([
       }
     }
   }
-])
+]
+const formItems = ref<FormItem[]>([...defaultFormItems])
+
+const btns: BtnItem[] = [
+  {
+    text: '提交',
+    loadable: true,
+    attrs: {
+      type: 'primary'
+    },
+    handle ({ done }) {
+      setTimeout(() => {
+        done()
+        console.log(formData)
+        layer.success('数据提交成功')
+      }, 3000)
+    }
+  },
+  {
+    text: '重置',
+    handle () {
+      formItems.value = [...defaultFormItems]
+      formData.value = {} as any
+    }
+  }
+]
 
 function handleClick () {
   if (meta.label.length < 0 || meta.index.length < 0) return
-  formItems.push({ ...meta })
+  if (meta.com === ClComs.SELECT || meta.com === ClComs.CHECKBOX_GROUP) {
+    formItems.value.push({
+      ...meta,
+      value: [],
+      attrs: {
+        options: [
+          { label: '选项1', value: 'option1' },
+          { label: '选项2', value: 'option2' }
+        ]
+      }
+    })
+  } else {
+    formItems.value.push({ ...meta })
+  }
 }
 </script>

@@ -1,5 +1,6 @@
 import { PropType, Ref, VNode, Component, ExtractPropTypes } from 'vue'
 import { ElForm } from 'element-plus'
+import { BtnItem } from 'ui/components/button-group'
 
 export type FormContext = {
   model: any,
@@ -20,6 +21,7 @@ export type FormItem = {
   label?: string | VNode,
   span?: number,
   index?: string,
+  value?: any,
   rule?: Record<string, any>,
   rules?: Record<string, any>[],
   hidden?: (model: any) => boolean
@@ -49,6 +51,13 @@ export const formProps = {
   },
   height: {
     type: String
+  },
+  maxHeight: {
+    type: String
+  },
+  btns: {
+    type: Array as PropType<BtnItem[]>,
+    default: () => ([])
   }
 }
 

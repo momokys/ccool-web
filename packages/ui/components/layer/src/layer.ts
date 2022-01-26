@@ -1,4 +1,5 @@
 import { App, ComponentInternalInstance, VNode, createVNode, render, nextTick } from 'vue'
+import { ElMessage } from 'element-plus'
 import { bus } from './bus'
 import Layer from './layer.vue'
 import { LayerProps } from './layer-type'
@@ -78,6 +79,12 @@ export const layer = {
         hidden = true
       })
     }
+  },
+  success (msg: string) {
+    ElMessage.success(msg)
+  },
+  error (msg: string) {
+    ElMessage.error(msg)
   }
 }
 

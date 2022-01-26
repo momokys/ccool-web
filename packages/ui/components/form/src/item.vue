@@ -97,4 +97,12 @@ function resolveCom (com: string | Component | VNode | undefined) {
     return com
   }
 }
+
+function initValue () {
+  if (props.formItem.index && props.formItem.value) {
+    Model.value[props.formItem.index] = props.formItem.value
+  }
+}
+
+initValue()
 </script>

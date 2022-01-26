@@ -25,12 +25,19 @@
         </el-form>
       </el-scrollbar>
     </div>
+    <div
+      v-if="btns.length > 0"
+      class="cl-form__footer"
+    >
+      <cl-button-group :btn-items="btns" />
+    </div>
   </div>
 </template>
 
 <script lang="ts" setup>
 import { ref, computed, provide, Ref } from 'vue'
 import { ElForm } from 'element-plus'
+import { ClButtonGroup } from '../../button-group'
 import ClFormItem from './item.vue'
 import { formProps, useFormContext, clFormKey } from './form'
 
@@ -53,6 +60,10 @@ const Height = computed(() => {
   return props.height
 })
 
+const MaxHeight = computed(() => {
+  return props.maxHeight
+})
+
 </script>
 
 <script lang="ts">
@@ -64,9 +75,18 @@ export default {
 <style lang="less">
 .cl-form {
   &__body {
+    overflow: hidden;
+    .el-scrollbar {
+      .el-scrollbar__wrap {
+        max-height: v-bind(MaxHeight); // 最大高度
+      }
+    }
     .el-scrollbar>.el-scrollbar__bar.is-horizontal {
       display: none !important;
     }
+  }
+  &__footer {
+    padding-top: 20px;
   }
 }
 </style>

@@ -1,5 +1,6 @@
 export const ClComs = {
   INPUT: 'ElInput',
   BUTTON: 'ElButton',
-  SELECT: 'ClSelect'
+  SELECT: 'ClSelect',
+  CHECKBOX_GROUP: 'ClCheckboxGroup'
 }
