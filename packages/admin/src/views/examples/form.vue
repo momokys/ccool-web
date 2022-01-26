@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="flex mb-10">
-      <div class="w-1/2 mr-5">
+    <div class="w-1/2 flex mb-10">
+      <div class="w-2/3 mr-5">
         <cl-form
           :model="meta"
           :form-items="mFi"
@@ -14,15 +14,23 @@
         新增属性
       </el-button>
     </div>
-    <div class="w-1/2">
-      <cl-form
-        :model="formData"
-        :form-items="formItems"
-        :btns="btns"
-        :label-width="100"
-        :label-position="'left'"
-        :max-height="'500px'"
-      />
+    <div class="w-full flex">
+      <div class="w-1/2">
+        <cl-form
+          :model="formData"
+          :form-items="formItems"
+          :btns="btns"
+          :label-width="100"
+          :label-position="'left'"
+          :max-height="'500px'"
+        />
+      </div>
+      <div
+        class="w-1/2"
+        style="max-height: 600px;"
+      >
+        <vue-json-view :src="formData" />
+      </div>
     </div>
   </div>
 </template>
@@ -35,13 +43,15 @@ import {
   FormItem,
   BtnItem
 } from '@ccool/ui'
+import VueJsonView from '@matpool/vue-json-view'
 import { components } from '@/constant/components'
 
-const meta = reactive({
+const defaultMeta = {
   label: '属性',
   index: 'prop',
   com: ClComs.INPUT
-})
+}
+const meta = reactive(defaultMeta)
 const mFi: FormItem[] = [
   {
     com: ClComs.INPUT,
@@ -119,8 +129,8 @@ const btns: BtnItem[] = [
   {
     text: '重置',
     handle () {
+      formData.value = {}
       formItems.value = [...defaultFormItems]
-      formData.value = {} as any
     }
   }
 ]
@@ -130,7 +140,7 @@ function handleClick () {
   if (meta.com === ClComs.SELECT || meta.com === ClComs.CHECKBOX_GROUP || meta.com === ClComs.RADIO_GROUP) {
     formItems.value.push({
       ...meta,
-      value: meta.com === ClComs.RADIO_GROUP ? '' : [],
+      value: meta.com === ClComs.CHECKBOX_GROUP ? [] : '',
       attrs: {
         options: [
           { label: '选项1', value: 'option1' },

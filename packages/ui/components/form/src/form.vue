@@ -15,8 +15,8 @@
         >
           <el-row :gutter="gutter">
             <el-col
-              v-for="item in FormItems"
-              :key="item"
+              v-for="(item, index) in FormItems"
+              :key="count + (item.index || '') + index"
               :span="item.span || 12"
             >
               <cl-form-item :form-item="item" />
@@ -35,13 +35,23 @@
 </template>
 
 <script lang="ts" setup>
-import { ref, computed, provide, Ref } from 'vue'
+import { ref, computed, provide, Ref, watch } from 'vue'
 import { ElForm } from 'element-plus'
 import { ClButtonGroup } from '../../button-group'
 import ClFormItem from './item.vue'
 import { formProps, useFormContext, clFormKey } from './form'
 
 const props = defineProps(formProps)
+
+const count = ref<number>(0)
+watch(
+  () => props.formItems,
+  () => {
+    count.value = count.value + 1
+    console.log(count.value)
+  },
+  { deep: true }
+)
 
 const formRef = ref<InstanceType<typeof ElForm>>()
 

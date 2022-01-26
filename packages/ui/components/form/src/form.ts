@@ -6,6 +6,7 @@ export type FormContext = {
   model: any,
   extra: any,
   props: any,
+  formRef: Ref<InstanceType<typeof ElForm>>,
   validate: () => Promise<boolean>,
   validateField: () => void
 }
@@ -68,7 +69,7 @@ export const clFormKey = Symbol('clFormKey')
 export function useFormContext (
   props: any,
   formRef: Ref<InstanceType<typeof ElForm>>
-) {
+): FormContext {
   return {
     model: props.model,
     extra: props.extra,
