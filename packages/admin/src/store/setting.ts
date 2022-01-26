@@ -5,6 +5,7 @@ export const useSetting = defineStore({
   state: () => {
     const opened = localStorage.getItem('sidebar.opened')
     return {
+      title: '西裤管理系统',
       sidebar: {
         minWidth: '64px',
         maxWidth: '210px',

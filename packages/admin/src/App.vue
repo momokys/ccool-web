@@ -5,7 +5,20 @@
 </template>
 
 <script lang="ts" setup>
+import { watch } from 'vue'
+import { useSetting } from './store'
 import zhCn from 'element-plus/lib/locale/lang/zh-cn'
+
+const setting = useSetting()
+
+watch(
+  () => setting.title,
+  () => {
+    document.title = setting.title
+  },
+  { immediate: true }
+)
+
 </script>
 
 <script lang="ts">
