@@ -1,5 +1,8 @@
 <template>
-  <transition name="layer">
+  <transition
+    name="layer"
+    mode="in-out"
+  >
     <div
       v-if="nativeVisible"
       class="cl-layer"
@@ -87,7 +90,7 @@ export default {
   min-height: 320px;
   margin-top: 15vh;
   background-color: #fff;
-  box-shadow: 1px 1px 50px rgb(0 0 0 / 30%);
+  box-shadow: 1px 20px 50px -10px rgb(0 0 0 / 20%);
   transition: opacity .3s, margin-top .3s;
 
   &.hidden {
@@ -149,14 +152,25 @@ export default {
 
 .layer-leave-active,
 .layer-enter-active {
-  margin-top: 0;
+  transition: margin .7s cubic-bezier(0.55, 0, 0, 1),
+  transform 1.2s cubic-bezier(0.165, 0.84, 0.44, 1) .1s,
+  opacity .5s cubic-bezier(0.55, 0, 0, 1),
+  filter 1.2s cubic-bezier(0.165, 0.84, 0.44, 1) .1s;
+}
+
+.layer-enter-from,
+.layer-leave-to {
   opacity: 0;
-  transition: opacity .3s, margin-top .3s;
+  margin-top: 17vh;
+  filter: blur(2px) sepia(.5);
+  transform: translateX(-50%) perspective(90px) rotateX(1deg);
 }
 
 .layer-enter {
-  margin-top: 15vh;
+  margin-top: 30vh;
   opacity: 1;
+  transform: none;
+
 }
 
 </style>
