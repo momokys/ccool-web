@@ -29,7 +29,8 @@ service.interceptors.response.use(
   },
   err => {
     if (err && err.response) {
-      let message
+      console.log(err.response)
+      let message = '连接服务器失败'
       switch (err.response.status) {
         case 401:
           // 认证失败删除 token, 重新登录
@@ -39,8 +40,11 @@ service.interceptors.response.use(
             name: route.loginName
           })
           break
+        case 404:
+          message = `找不到 ${err.response.config.url}`
+          break
         default:
-          message = err.response.data.message || ''
+          message = err.response.data.message
       }
       layer.error(message)
     } else {
