@@ -10,6 +10,9 @@
       </el-icon>
     </div>
     <nav-menu />
+    <div class="flex ml-auto mr-5">
+      <user />
+    </div>
   </div>
 </template>
 
@@ -17,6 +20,7 @@
 import { computed } from 'vue'
 import { useSetting } from '@/store'
 import NavMenu from './nav-menu.vue'
+import User from './user.vue'
 
 const setting = useSetting()
 const Sidebar = computed(() => setting.sidebar)

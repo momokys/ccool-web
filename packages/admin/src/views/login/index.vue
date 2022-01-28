@@ -11,9 +11,9 @@
         :model="loginForm"
         :rules="rules"
       >
-        <el-form-item prop="username">
+        <el-form-item prop="userName">
           <el-input
-            v-model="loginForm.username"
+            v-model="loginForm.userName"
             prefix-icon="User"
             size="large"
           />
@@ -44,14 +44,18 @@
 <script lang="ts" setup>
 import { reactive } from 'vue'
 import { useRouter } from 'vue-router'
+import routeConfig from '@/config/route'
+import { useUser } from '@/store'
+
+const user = useUser()
 
 const loginForm = reactive({
-  username: 'admin',
+  userName: 'admin',
   password: '123456'
 })
 
 const rules = {
-  username: {
+  userName: {
     required: true,
     message: '用户名不能为空',
     trigger: 'change'
@@ -64,10 +68,12 @@ const rules = {
 }
 
 const router = useRouter()
-function login () {
+async function login () {
+  await user.login(loginForm)
   router.push({
-    name: 'Home'
+    name: routeConfig.homeName
   })
+  location.reload()
 }
 
 </script>

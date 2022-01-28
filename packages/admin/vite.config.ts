@@ -6,6 +6,7 @@ import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import WindiCSS from 'vite-plugin-windicss'
+import { viteMockServe } from 'vite-plugin-mock'
 import { svgBuilder } from './src/plugins/svg-builder'
 
 export default defineConfig({
@@ -60,6 +61,13 @@ export default defineConfig({
       ]
     }),
     WindiCSS(),
+    viteMockServe({
+      localEnabled: true,
+      prodEnabled: true
+    }),
     svgBuilder('./src/assets/icons/')
-  ]
+  ],
+  optimizeDeps: {
+    entries: ['./src/main.ts']
+  }
 })
