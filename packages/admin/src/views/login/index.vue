@@ -44,6 +44,7 @@
 <script lang="ts" setup>
 import { reactive } from 'vue'
 import { useRouter } from 'vue-router'
+import { layer } from '@ccool/ui'
 import routeConfig from '@/config/route'
 import { useUser } from '@/store'
 
@@ -70,10 +71,11 @@ const rules = {
 const router = useRouter()
 async function login () {
   await user.login(loginForm)
+  layer.success('欢迎登录西裤')
   router.push({
     name: routeConfig.homeName
   })
-  location.reload()
+  // location.reload()
 }
 
 </script>

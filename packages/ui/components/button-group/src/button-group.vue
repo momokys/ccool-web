@@ -12,7 +12,7 @@
         v-for="(item, index) in btnItems"
         :key="index"
         :size="size"
-        :loading="loadingMap[index]"
+        :loading="loadingMap[index] || false"
         :disabled="!loadingMap[index] && loading"
         v-bind="item.attrs"
         @click="handleClick(index, item)"

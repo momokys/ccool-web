@@ -1,11 +1,10 @@
 import { PropType } from 'vue'
-import { ElButton } from 'element-plus'
-import { ComponentPropsType } from '@ccool/utils'
+import { ButtonProps } from 'element-plus'
 
 export type BtnItem = {
   text: string,
   loadable?: boolean,
-  attrs?: ComponentPropsType<typeof ElButton>,
+  attrs?: Partial<ButtonProps>,
   handle?: (props: { done: () => void }) => void
 }
 

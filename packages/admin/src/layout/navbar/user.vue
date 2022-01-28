@@ -2,7 +2,7 @@
   <el-dropdown @command="handleCommand">
     <span class="flex items-center hover:text-blue-400 cursor-pointer">
       <el-avatar
-        size="small"
+        :size="24"
         :src="avatarUrl"
       />
       <span class=" ml-3">{{ user.info.userName }}</span>
