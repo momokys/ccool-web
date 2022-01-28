@@ -66,6 +66,22 @@ export default defineConfig({
     }),
     svgBuilder('./src/assets/icons/')
   ],
+  css: {
+    postcss: {
+      plugins: [
+        {
+          postcssPlugin: 'internal:charset-removal',
+          AtRule: {
+            charset: (atRule) => {
+              if (atRule.name === 'charset') {
+                atRule.remove()
+              }
+            }
+          }
+        }
+      ]
+    }
+  },
   optimizeDeps: {
     entries: ['./src/main.ts']
   }

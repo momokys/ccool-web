@@ -1,7 +1,7 @@
 <template>
   <template v-if="formItem.index !== undefined">
     <el-form-item
-      :label="formItem.label"
+      :label="resolveLabel(formItem)"
       :prop="formItem.index"
       :rules="Rules"
     >
@@ -27,7 +27,7 @@
 <script lang="tsx" setup>
 import { PropType, VNode, inject, computed, resolveDynamicComponent } from 'vue'
 import type { Component } from 'vue'
-import _ from 'lodash'
+import { isString } from 'lodash'
 import { FormItem, FormContext, clFormKey } from './form'
 
 const props = defineProps({
@@ -98,11 +98,16 @@ const Events = computed(() => {
 function resolveCom (com: string | Component | VNode | undefined) {
   if (com === undefined) {
     return <></>
-  } else if (_.isString(com)) {
+  } else if (isString(com)) {
     return resolveDynamicComponent(com)
   } else {
     return com
   }
+}
+
+function resolveLabel (formItem: FormItem) {
+  if (isString(formItem.label)) return formItem.label
+  else return ''
 }
 
 function initValue () {

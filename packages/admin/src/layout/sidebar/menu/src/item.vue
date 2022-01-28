@@ -41,7 +41,7 @@
 
 <script lang="ts" setup>
 import { PropType } from 'vue'
-import _ from 'lodash'
+import { isEmpty } from 'lodash'
 import { MenuItemType } from './type'
 
 defineProps({
@@ -60,7 +60,7 @@ defineProps({
 })
 
 function hasChild (item: MenuItemType) {
-  return !_.isEmpty(item.children)
+  return !isEmpty(item.children)
 }
 
 </script>

@@ -35,7 +35,7 @@
 
 <script lang="ts" setup>
 import { ref, computed, defineAsyncComponent, AsyncComponentLoader } from 'vue'
-import _ from 'lodash'
+import { isObject, isFunction } from 'lodash'
 import { bus } from './bus'
 import { ClButtonGroup } from '../../button-group'
 import { layerProps } from './layer-type'
@@ -43,11 +43,11 @@ import { layerProps } from './layer-type'
 const props = defineProps(layerProps)
 
 const Content = computed(() => {
-  if (_.isFunction(props.content)) {
+  if (isFunction(props.content)) {
     const content = props.content
     // 异步加载
     const com = (content as AsyncComponentLoader)()
-    if (_.isObject(com) && _.isFunction(com.then) && _.isFunction(com.catch)) {
+    if (isObject(com) && isFunction(com.then) && isFunction(com.catch)) {
       return defineAsyncComponent(() => com)
     } else {
       return com
