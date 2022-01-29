@@ -1,6 +1,7 @@
 import { defineStore } from 'pinia'
 import userApi from '@/api/user'
 import { setToken, getToken, removeToken } from '@/http/cookie'
+import { useMenu } from '.'
 
 export const useUser = defineStore({
   id: 'user',
@@ -30,6 +31,8 @@ export const useUser = defineStore({
     },
     async qryCurUser () {
       if (!this.hasGetInfo && this.hasLogin()) {
+        const menu = useMenu()
+        await menu.qryMenus()
         const resp = await userApi.qryCurUser()
         this.info = resp.data
         this.hasGetInfo = true

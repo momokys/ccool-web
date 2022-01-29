@@ -107,7 +107,7 @@ export default [
             menuName: '动态表单',
             parentId: 3,
             path: '/system/examples/form',
-            src: '/src/views/system/examples/form/index.vue'
+            src: '/src/views/examples/form.vue'
           },
           {
             menuId: 7,
@@ -116,7 +116,7 @@ export default [
             menuName: '命令式弹窗',
             parentId: 3,
             path: '/system/examples/layer',
-            src: '/src/views/system/examples/layer'
+            src: '/src/views/examples/layer.vue'
           }
         ],
         code: 0

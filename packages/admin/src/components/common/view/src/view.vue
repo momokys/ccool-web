@@ -7,6 +7,7 @@
     <keep-alive>
       <component :is="com" />
     </keep-alive>
+    <!-- <component :is="com" /> -->
   </transition>
 </template>
 
