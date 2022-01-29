@@ -3,3 +3,9 @@
     我的任务
   </h1>
 </template>
+
+<script lang="ts">
+export default {
+  name: 'SystemMyTask'
+}
+</script>

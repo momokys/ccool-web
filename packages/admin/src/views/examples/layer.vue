@@ -99,3 +99,9 @@ function asyncOpen () {
 }
 
 </script>
+
+<script lang="tsx">
+export default {
+  name: 'ExampleLayer'
+}
+</script>

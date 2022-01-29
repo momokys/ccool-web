@@ -132,3 +132,9 @@ function handleClick () {
   }
 }
 </script>
+
+<script lang="tsx">
+export default {
+  name: 'ExampleForm'
+}
+</script>

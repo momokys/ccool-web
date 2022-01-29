@@ -6,15 +6,17 @@
 
 <script lang="ts" setup>
 import { watch } from 'vue'
+import { useRoute } from 'vue-router'
 import { useSetting } from './store'
 import zhCn from 'element-plus/lib/locale/lang/zh-cn'
 
+const route = useRoute()
 const setting = useSetting()
 
 watch(
-  () => setting.title,
+  route,
   () => {
-    document.title = setting.title
+    document.title = setting.title + '-' + route.meta.title
   },
   { immediate: true }
 )
