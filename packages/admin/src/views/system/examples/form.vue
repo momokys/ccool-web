@@ -1,12 +1,11 @@
 <template>
   <div>
-    <div class="w-1/2 flex mb-10">
-      <div class="w-2/3 mr-5">
-        <cl-form
-          :model="meta"
-          :form-items="mFi"
-        />
-      </div>
+    <div class="flex mb-10">
+      <cl-form
+        :model="meta"
+        :form-items="mFi"
+        :layout="'inline'"
+      />
       <el-button
         type="primary"
         @click="handleClick"
@@ -14,8 +13,8 @@
         新增属性
       </el-button>
     </div>
-    <div class="w-full flex">
-      <div class="w-1/2">
+    <div class="w-full flex md:flex-wrap">
+      <div class="lg:w-1/2 md:w-full">
         <cl-form
           :model="formData"
           :form-items="formItems"
@@ -26,7 +25,7 @@
         />
       </div>
       <div
-        class="w-1/2"
+        class="lg:w-1/2 md:w-full"
         style="max-height: 600px;"
       >
         <vue-json-view
@@ -51,26 +50,26 @@ import { components } from '@/constant/components'
 import defaultFormItems from '@/forms/example'
 const defaultMeta = {
   label: '属性',
-  index: 'prop',
+  field: 'prop',
   com: ClComs.INPUT
 }
 const meta = reactive(defaultMeta)
 const mFi: FormItem[] = [
   {
     com: ClComs.INPUT,
-    index: 'label',
+    field: 'label',
     label: '标签',
     span: 8
   },
   {
     com: ClComs.INPUT,
-    index: 'index',
+    field: 'field',
     label: '属性名',
     span: 8
   },
   {
     com: ClComs.SELECT,
-    index: 'com',
+    field: 'com',
     label: '组件',
     span: 8,
     attrs: {
@@ -115,7 +114,7 @@ const btns: BtnItem[] = [
 ]
 
 function handleClick () {
-  if (meta.label.length < 0 || meta.index.length < 0) return
+  if (meta.label.length < 0 || meta.field.length < 0) return
   if (meta.com === ClComs.SELECT || meta.com === ClComs.CHECKBOX_GROUP || meta.com === ClComs.RADIO_GROUP) {
     formItems.value.push({
       ...meta,

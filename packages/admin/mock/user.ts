@@ -72,6 +72,16 @@ export default [
             icon: 'el-icon-menu'
           },
           {
+            menuId: 8,
+            menuCode: 'FormDesigner',
+            menuType: 'M',
+            menuName: '表单设计',
+            parentId: 1,
+            path: '/system/designer',
+            src: '/src/views/system/designer/index.vue',
+            icon: 'el-icon-opportunity'
+          },
+          {
             menuId: 3,
             menuCode: 'SystemExamples',
             menuType: 'M',
@@ -107,7 +117,7 @@ export default [
             menuName: '动态表单',
             parentId: 3,
             path: '/system/examples/form',
-            src: '/src/views/examples/form.vue'
+            src: '/src/views/system/examples/form.vue'
           },
           {
             menuId: 7,
@@ -116,7 +126,7 @@ export default [
             menuName: '命令式弹窗',
             parentId: 3,
             path: '/system/examples/layer',
-            src: '/src/views/examples/layer.vue'
+            src: '/src/views/system/examples/layer.vue'
           }
         ],
         code: 0

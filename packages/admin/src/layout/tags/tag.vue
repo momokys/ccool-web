@@ -65,6 +65,7 @@ const classObj = computed(() => ({
   font-size: 0;
   vertical-align: middle;
   cursor: pointer;
+  transition: width .3s;
 
   span {
     display: inline-block;
@@ -86,6 +87,7 @@ const classObj = computed(() => ({
     border-radius: 8px;
     color: #b4bccc;
     display: none;
+    overflow: hidden;
     transition: color 0.3s, background-color 0.3s;
     &:hover {
       color: #60a5fa;
@@ -105,6 +107,7 @@ const classObj = computed(() => ({
     .refresh-btn,
     .cancel-btn {
       color: #fff;
+      transition: width .3s;
       &:hover {
         color: #60a5fa;
         background-color: #EFF6FF;

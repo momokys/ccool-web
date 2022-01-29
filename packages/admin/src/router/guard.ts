@@ -3,6 +3,7 @@ import Layout from '@/layout/index.vue'
 import nprogress from 'nprogress'
 import { useUser, useMenu, MenuItemType } from '@/store'
 import routeConfig from '@/config/route'
+import { layer } from '@ccool/ui'
 
 export function globalBeforeGuard (router: Router) {
   return async (
@@ -31,6 +32,7 @@ export function globalBeforeGuard (router: Router) {
     } else {
       next()
     }
+    layer.close()
   }
 }
 

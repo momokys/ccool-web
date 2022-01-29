@@ -44,7 +44,7 @@ export type Base = {
 export type FormItem = {
   label?: string | VNode,
   span?: number,
-  index?: string,
+  field?: string,
   value?: any,
   rule?: Rule,
   rules?: Rule[],
@@ -62,6 +62,10 @@ export const formProps = {
   formItems: {
     type: Array as PropType<FormItem[]>,
     default: () => ([])
+  },
+  layout: {
+    type: String as PropType<'inline' | 'grid'>,
+    default: 'grid'
   },
   gutter: {
     type: Number,

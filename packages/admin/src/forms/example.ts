@@ -3,7 +3,7 @@ import { ClComs, FormItem } from '@ccool/ui'
 export default [
   {
     com: ClComs.INPUT,
-    index: 'username',
+    field: 'username',
     label: '用户名',
     rule: {
       required: true,
@@ -18,7 +18,7 @@ export default [
   },
   {
     com: ClComs.INPUT,
-    index: 'password',
+    field: 'password',
     label: '密码',
     attrs: {
       type: 'password'
@@ -36,7 +36,7 @@ export default [
   },
   {
     com: ClComs.SELECT,
-    index: 'role',
+    field: 'role',
     label: '角色',
     attrs: {
       full: true,
@@ -49,7 +49,7 @@ export default [
   },
   {
     com: ClComs.SELECT,
-    index: 'authority',
+    field: 'authority',
     label: '权限',
     value: [] as string [],
     attrs: {
@@ -66,7 +66,7 @@ export default [
   },
   {
     com: ClComs.INPUT,
-    index: 'nickname',
+    field: 'nickname',
     label: '昵称',
     attrs: {
       placeholder: '请输入昵称'
@@ -74,7 +74,7 @@ export default [
   },
   {
     com: ClComs.DATE_PICKER,
-    index: 'birthday',
+    field: 'birthday',
     label: '生日',
     attrs: {
       valueFormat: 'YYYY-MM-DD',
@@ -83,7 +83,7 @@ export default [
   },
   {
     com: ClComs.RADIO_GROUP,
-    index: 'sex',
+    field: 'sex',
     label: '性别',
     attrs: {
       options: [
@@ -94,7 +94,7 @@ export default [
   },
   {
     com: ClComs.CHECKBOX_GROUP,
-    index: 'hobbies',
+    field: 'hobbies',
     label: '爱好',
     value: [],
     attrs: {

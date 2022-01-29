@@ -3,246 +3,246 @@ import { ClComs, FormItem } from '@ccool/ui'
 export default [
   {
     com: ClComs.INPUT,
-    index: 'field1',
+    field: 'field1',
     label: '属性1'
   },
   {
     com: ClComs.INPUT,
-    index: 'field2',
+    field: 'field2',
     label: '属性1'
   },
   {
     com: ClComs.INPUT,
-    index: 'field3',
+    field: 'field3',
     label: '属性1'
   },
   {
     com: ClComs.INPUT,
-    index: 'field4',
+    field: 'field4',
     label: '属性1'
   },
   {
     com: ClComs.INPUT,
-    index: 'field5',
+    field: 'field5',
     label: '属性6'
   },
   {
     com: ClComs.INPUT,
-    index: 'field7',
+    field: 'field7',
     label: '属性1'
   },
   {
     com: ClComs.INPUT,
-    index: 'field8',
+    field: 'field8',
     label: '属性1'
   },
   {
     com: ClComs.INPUT,
-    index: 'field9',
+    field: 'field9',
     label: '属性1'
   },
   {
     com: ClComs.INPUT,
-    index: 'field10',
+    field: 'field10',
     label: '属性1'
   },
   {
     com: ClComs.INPUT,
-    index: 'field11',
+    field: 'field11',
     label: '属性1'
   },
   {
     com: ClComs.INPUT,
-    index: 'field12',
+    field: 'field12',
     label: '属性1'
   },
   {
     com: ClComs.INPUT,
-    index: 'field13',
+    field: 'field13',
     label: '属性1'
   },
   {
     com: ClComs.INPUT,
-    index: 'field14',
+    field: 'field14',
     label: '属性1'
   }, {
     com: ClComs.INPUT,
-    index: 'field15',
+    field: 'field15',
     label: '属性1'
   },
   {
     com: ClComs.INPUT,
-    index: 'field16',
+    field: 'field16',
     label: '属性1'
   },
   {
     com: ClComs.INPUT,
-    index: 'field17',
+    field: 'field17',
     label: '属性1'
   },
   {
     com: ClComs.INPUT,
-    index: 'field18',
+    field: 'field18',
     label: '属性1'
   },
   {
     com: ClComs.INPUT,
-    index: 'field19',
+    field: 'field19',
     label: '属性1'
   },
   {
     com: ClComs.INPUT,
-    index: 'field20',
+    field: 'field20',
     label: '属性1'
   },
   {
     com: ClComs.INPUT,
-    index: 'field21',
+    field: 'field21',
     label: '属性1'
   },
   {
     com: ClComs.INPUT,
-    index: 'field22',
+    field: 'field22',
     label: '属性1'
   },
   {
     com: ClComs.INPUT,
-    index: 'field23',
+    field: 'field23',
     label: '属性1'
   },
   {
     com: ClComs.INPUT,
-    index: 'field24',
+    field: 'field24',
     label: '属性1'
   },
   {
     com: ClComs.INPUT,
-    index: 'field25',
+    field: 'field25',
     label: '属性1'
   },
   {
     com: ClComs.INPUT,
-    index: 'field26',
+    field: 'field26',
     label: '属性1'
   },
   {
     com: ClComs.INPUT,
-    index: 'field27',
+    field: 'field27',
     label: '属性1'
   },
   {
     com: ClComs.INPUT,
-    index: 'field28',
+    field: 'field28',
     label: '属性1'
   },
   {
     com: ClComs.INPUT,
-    index: 'field29',
+    field: 'field29',
     label: '属性1'
   },
   {
     com: ClComs.INPUT,
-    index: 'field30',
+    field: 'field30',
     label: '属性1'
   },
   {
     com: ClComs.INPUT,
-    index: 'field31',
+    field: 'field31',
     label: '属性1'
   },
   {
     com: ClComs.INPUT,
-    index: 'field32',
+    field: 'field32',
     label: '属性1'
   },
   {
     com: ClComs.INPUT,
-    index: 'field33',
+    field: 'field33',
     label: '属性1'
   },
   {
     com: ClComs.INPUT,
-    index: 'field34',
+    field: 'field34',
     label: '属性1'
   },
   {
     com: ClComs.INPUT,
-    index: 'field35',
+    field: 'field35',
     label: '属性1'
   },
   {
     com: ClComs.INPUT,
-    index: 'field36',
+    field: 'field36',
     label: '属性1'
   },
   {
     com: ClComs.INPUT,
-    index: 'field37',
+    field: 'field37',
     label: '属性1'
   },
   {
     com: ClComs.INPUT,
-    index: 'field38',
+    field: 'field38',
     label: '属性1'
   },
   {
     com: ClComs.INPUT,
-    index: 'field39',
+    field: 'field39',
     label: '属性1'
   },
   {
     com: ClComs.INPUT,
-    index: 'field40',
+    field: 'field40',
     label: '属性1'
   },
   {
     com: ClComs.INPUT,
-    index: 'field41',
+    field: 'field41',
     label: '属性1'
   },
   {
     com: ClComs.INPUT,
-    index: 'field42',
+    field: 'field42',
     label: '属性1'
   },
   {
     com: ClComs.INPUT,
-    index: 'field43',
+    field: 'field43',
     label: '属性1'
   },
   {
     com: ClComs.INPUT,
-    index: 'field44',
+    field: 'field44',
     label: '属性1'
   },
   {
     com: ClComs.INPUT,
-    index: 'field45',
+    field: 'field45',
     label: '属性1'
   },
   {
     com: ClComs.INPUT,
-    index: 'field46',
+    field: 'field46',
     label: '属性1'
   },
   {
     com: ClComs.INPUT,
-    index: 'field47',
+    field: 'field47',
     label: '属性1'
   },
   {
     com: ClComs.INPUT,
-    index: 'field48',
+    field: 'field48',
     label: '属性1'
   },
   {
     com: ClComs.INPUT,
-    index: 'field49',
+    field: 'field49',
     label: '属性1'
   },
   {
     com: ClComs.INPUT,
-    index: 'field50',
+    field: 'field50',
     label: '属性1'
   }
 ] as FormItem[]

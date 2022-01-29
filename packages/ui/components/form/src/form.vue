@@ -9,22 +9,35 @@
         <el-form
           ref="formRef"
           :model="model"
+          :inline="layout === 'inline'"
           :label-width="labelWidth"
           :label-position="labelPosition"
-          style="padding-right: 20px;"
+          :style="{ paddingRight: layout === 'inline' ? '0' : '20px' }"
         >
-          <el-row :gutter="gutter">
-            <el-col
+          <template v-if="layout === 'grid'">
+            <el-row :gutter="gutter">
+              <el-col
+                v-for="(item, index) in FormItems"
+                :key="(item.field || '') + index"
+                :lg="item.span || (24 / cloumn)"
+                :md="12"
+                :sm="24"
+              >
+                <cl-form-item
+                  :model="model"
+                  :form-item="item"
+                />
+              </el-col>
+            </el-row>
+          </template>
+          <template v-else>
+            <cl-form-item
               v-for="(item, index) in FormItems"
-              :key="(item.index || '') + index"
-              :span="item.span || (24 / cloumn)"
-            >
-              <cl-form-item
-                :model="model"
-                :form-item="item"
-              />
-            </el-col>
-          </el-row>
+              :key="(item.field || '') + index"
+              :model="model"
+              :form-item="item"
+            />
+          </template>
         </el-form>
       </el-scrollbar>
     </div>

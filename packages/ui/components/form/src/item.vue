@@ -1,14 +1,14 @@
 <template>
-  <template v-if="formItem.index !== undefined">
+  <template v-if="formItem.field !== undefined">
     <el-form-item
       :label="resolveLabel(formItem)"
-      :prop="formItem.index"
+      :prop="formItem.field"
       :rules="Rules"
     >
       <component
         :is="resolveCom(formItem.com)"
         :disabled="Disabled"
-        v-model="Model[formItem.index]"
+        v-model="Model[formItem.field]"
         v-bind="formItem.attrs"
         v-on="Events"
       />
@@ -111,8 +111,8 @@ function resolveLabel (formItem: FormItem) {
 }
 
 function initValue () {
-  if (props.formItem.index && props.formItem.value) {
-    Model.value[props.formItem.index] = props.formItem.value
+  if (props.formItem.field && props.formItem.value) {
+    Model.value[props.formItem.field] = props.formItem.value
   }
 }
 
