@@ -21,5 +21,11 @@ export default {
       url: `${baseURL}/cur`,
       method: 'GET'
     })
+  },
+  qryCurMenu () {
+    return request({
+      url: `${baseURL}/menu/cur`,
+      method: 'GET'
+    })
   }
 }

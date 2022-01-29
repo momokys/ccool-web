@@ -62,7 +62,8 @@ export default defineConfig({
     }),
     WindiCSS(),
     viteMockServe({
-      localEnabled: true
+      localEnabled: true,
+      prodEnabled: true
     }),
     svgBuilder('./src/assets/icons/')
   ],

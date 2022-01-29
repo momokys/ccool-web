@@ -16,4 +16,3 @@ export default _Menu
 export const SideMenu = _Menu
 
 export const SideMenuItem = _Item
-export * from './src/type'

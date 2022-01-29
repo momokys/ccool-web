@@ -15,8 +15,8 @@
         >
           <el-row :gutter="gutter">
             <el-col
-              v-for="item in FormItems"
-              :key="item"
+              v-for="(item, index) in FormItems"
+              :key="(item.index || '') + index"
               :span="item.span || (24 / cloumn)"
             >
               <cl-form-item

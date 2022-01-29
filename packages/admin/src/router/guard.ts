@@ -1,6 +1,6 @@
 import { NavigationGuardNext, RouteLocationNormalized, NavigationFailure, Router } from 'vue-router'
 import nprogress from 'nprogress'
-import { useUser } from '@/store'
+import { useUser, useMenu } from '@/store'
 import routeConfig from '@/config/route'
 
 export function globalBeforeGuard (router: Router) {
@@ -11,6 +11,7 @@ export function globalBeforeGuard (router: Router) {
   ) => {
     nprogress.start()
     const user = useUser()
+    const menu = useMenu()
     if (!user.hasLogin() && !routeConfig.pernitList.includes(to.name as string)) {
       // 未登录，并且不是白名单
       next({ name: routeConfig.loginName })
@@ -18,6 +19,7 @@ export function globalBeforeGuard (router: Router) {
       next({ name: routeConfig.homeName })
     } else {
       user.qryCurUser()
+      await menu.qryMenus()
       next()
     }
   }

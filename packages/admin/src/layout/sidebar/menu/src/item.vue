@@ -6,7 +6,7 @@
     >
       <template #title>
         <cl-icon :icon="item.icon" />
-        <span>{{ item.title }}</span>
+        <span>{{ item.menuName }}</span>
       </template>
       <side-menu-item
         v-for="child in item.children"
@@ -23,17 +23,17 @@
     >
       <template v-if="collapse">
         <el-tooltip
-          :content="item.title"
+          :content="item.menuName"
           :offset="32"
           placement="right"
         >
           <cl-icon :icon="item.icon" />
-          <span>{{ item.title }}</span>
+          <span>{{ item.menuName }}</span>
         </el-tooltip>
       </template>
       <template v-else>
         <cl-icon :icon="item.icon" />
-        <span>{{ item.title }}</span>
+        <span>{{ item.menuName }}</span>
       </template>
     </el-menu-item>
   </template>
@@ -42,7 +42,7 @@
 <script lang="ts" setup>
 import { PropType } from 'vue'
 import { isEmpty } from 'lodash'
-import { MenuItemType } from './type'
+import { MenuItemType } from '@/store'
 
 defineProps({
   item: {

@@ -22,7 +22,7 @@
 
 <script lang="ts" setup>
 import { PropType } from 'vue'
-import { MenuItemType } from './type'
+import { MenuItemType } from '@/store'
 import SideMenuItem from './item.vue'
 
 defineProps({

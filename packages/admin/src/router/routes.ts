@@ -26,77 +26,65 @@ const routes: RouteRecordRaw[] = [
         component: () => import('@/views/home/index.vue')
       }
     ]
-  },
-  {
-    path: '/test',
-    redirect: '/test/index',
-    component: Layout,
-    children: [
-      {
-        path: '/test/index',
-        name: 'Test',
-        meta: {
-          title: '测试'
-        },
-        component: () => import('@/views/test/index.vue')
-      }
-    ]
-  },
-  {
-    path: '/examples',
-    redirect: '/examples/form',
-    component: Layout,
-    children: [
-      {
-        path: '/examples/form',
-        name: 'ExampleForm',
-        meta: {
-          title: '动态表单'
-        },
-        component: () => import('@/views/examples/form.vue')
-      },
-      {
-        path: '/examples/layer',
-        name: 'ExampleLayer',
-        meta: {
-          title: '命令式弹窗'
-        },
-        component: () => import('@/views/examples/layer.vue')
-      }
-    ]
-  },
-  {
-    path: '/system',
-    name: '_System',
-    redirect: '/system/index',
-    component: Layout,
-    children: [
-      {
-        path: '/system/index',
-        name: 'System',
-        meta: {
-          title: '系统管理'
-        },
-        component: () => import('@/views/system/index.vue')
-      }
-    ]
-  },
-  {
-    path: '/my-task',
-    name: '_MyTask',
-    redirect: '/my-task/index',
-    component: Layout,
-    children: [
-      {
-        path: '/my-task/index',
-        name: 'MyTask',
-        meta: {
-          title: '我的任务'
-        },
-        component: () => import('@/views/my-task/index.vue')
-      }
-    ]
   }
+  // {
+  //   path: '/system',
+  //   name: 'System',
+  //   redirect: '/system/menu',
+  //   component: Layout,
+  //   meta: {
+  //     title: '系统管理'
+  //   },
+  //   children: [
+  //     {
+  //       path: '/system/menu',
+  //       name: 'SystemMenu',
+  //       meta: {
+  //         title: '菜单管理'
+  //       },
+  //       component: () => import('@/views/system/menu/index.vue')
+  //     },
+  //     {
+  //       path: '/system/examples',
+  //       redirect: '/system/examples/form',
+  //       component: Layout,
+  //       children: [
+  //         {
+  //           path: '/system/examples/form',
+  //           name: 'ExampleForm',
+  //           meta: {
+  //             title: '动态表单'
+  //           },
+  //           component: () => import('@/views/examples/form.vue')
+  //         },
+  //         {
+  //           path: '/system/examples/layer',
+  //           name: 'ExampleLayer',
+  //           meta: {
+  //             title: '命令式弹窗'
+  //           },
+  //           component: () => import('@/views/examples/layer.vue')
+  //         }
+  //       ]
+  //     },
+  //     {
+  //       path: '/system/my-task',
+  //       name: 'MyTask',
+  //       meta: {
+  //         title: '我的任务'
+  //       },
+  //       component: () => import('@/views/system/my-task/index.vue')
+  //     },
+  //     {
+  //       path: '/system/test',
+  //       name: 'Test',
+  //       meta: {
+  //         title: '测试'
+  //       },
+  //       component: () => import('@/views/system/test/index.vue')
+  //     }
+  //   ]
+  // }
 ]
 
 export default routes

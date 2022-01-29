@@ -6,6 +6,6 @@ export default store
 
 export * from './user'
 export * from './setting'
-export * from './menus'
+export * from './menu'
 export * from './views-cache'
 export * from './visited-views'
