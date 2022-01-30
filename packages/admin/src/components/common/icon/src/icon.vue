@@ -1,6 +1,6 @@
 <template>
   <template v-if="icon.length > 0">
-    <template v-if="prefix === 'cl'">
+    <template v-if="prefix === 'cl-icon'">
       <i
         class="el-icon"
         :style="style"
@@ -9,7 +9,7 @@
         <cl-svg :name="name" />
       </i>
     </template>
-    <template v-else>
+    <template v-else-if="prefix === 'el-icon'">
       <el-icon
         :size="size"
         :color="color"
