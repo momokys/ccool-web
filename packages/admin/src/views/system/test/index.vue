@@ -1,7 +1,7 @@
 <template>
   <div>
     <cl-form
-      :model="formData"
+      v-model="formData"
       :form-items="formItems"
       :label-width="'100px'"
       :label-position="'right'"

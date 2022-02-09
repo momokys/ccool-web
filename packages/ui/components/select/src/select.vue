@@ -30,8 +30,8 @@ const emit = defineEmits([
 ])
 
 function handleChange (value: any[] | any) {
-  emit('change', value)
   emit('update:modelValue', value)
+  emit('change', value)
 }
 
 </script>

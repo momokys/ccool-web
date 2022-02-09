@@ -20,7 +20,6 @@ export function globalBeforeGuard (router: Router) {
     } else if (user.hasLogin() && !user.hasGetInfo) {
       await user.qryCurUser()
       const dynamicRoutes = formatRoutes(menu.menuTrees)
-      console.log(dynamicRoutes)
       dynamicRoutes.forEach(route => {
         router.addRoute(route)
       })

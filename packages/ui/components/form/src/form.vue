@@ -8,7 +8,7 @@
       <el-scrollbar>
         <el-form
           ref="formRef"
-          :model="model"
+          :model="modelValue"
           :inline="layout === 'inline'"
           :label-width="labelWidth"
           :label-position="labelPosition"
@@ -24,7 +24,7 @@
                 :sm="24"
               >
                 <cl-form-item
-                  :model="model"
+                  :model="modelValue"
                   :form-item="item"
                 />
               </el-col>
@@ -34,7 +34,7 @@
             <cl-form-item
               v-for="(item, index) in FormItems"
               :key="(item.field || '') + index"
-              :model="model"
+              :model="modelValue"
               :form-item="item"
             />
           </template>
@@ -67,7 +67,7 @@ provide(clFormKey, fctx)
 
 const FormItems = computed(() => {
   return props.formItems.filter(item => {
-    if (item.hidden) return !item.hidden(props.model)
+    if (item.hidden) return !item.hidden(props.modelValue)
     else return true
   })
 })

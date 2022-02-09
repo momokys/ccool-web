@@ -90,6 +90,18 @@ export default [
         { label: '男', value: '0' },
         { label: '女', value: '1' }
       ]
+    },
+    on: {
+      change: ({ fctx }) => {
+        if (fctx.model.sex === '0') {
+          if (!fctx.model.hobbies) {
+            fctx.model.hobbies = []
+          }
+          if (!new Set(fctx.model.hobbies).has('0')) {
+            fctx.model.hobbies.push('0')
+          }
+        }
+      }
     }
   },
   {

@@ -52,7 +52,7 @@ export type FormItem = {
 } & Base
 
 export const formProps = {
-  model: {
+  modelValue: {
     type: Object as PropType<Record<string, any>>,
     required: true
   },
@@ -106,7 +106,7 @@ export function useFormContext (
   formRef: Ref<InstanceType<typeof ElForm>>
 ): FormContext {
   return {
-    model: props.model,
+    model: props.modelValue,
     extra: props.extra,
     props: props,
     formRef: formRef,

@@ -2,7 +2,7 @@
   <div>
     <div class="flex mb-10">
       <cl-form
-        :model="meta"
+        v-model="meta"
         :form-items="mFi"
         :layout="'inline'"
       />
@@ -16,7 +16,7 @@
     <div class="w-full flex md:flex-wrap">
       <div class="lg:w-1/2 md:w-full">
         <cl-form
-          :model="formData"
+          v-model="formData"
           :form-items="formItems"
           :btns="btns"
           :label-width="100"

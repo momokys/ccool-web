@@ -35,8 +35,8 @@ defineProps({
 const emit = defineEmits(['update:modelValue', 'change'])
 
 function handleChange (value: any[]) {
-  emit('change', value)
   emit('update:modelValue', value)
+  emit('change', value)
 }
 </script>
 
