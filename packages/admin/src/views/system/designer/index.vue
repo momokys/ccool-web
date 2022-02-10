@@ -28,9 +28,19 @@
         <com-select />
       </div>
       <div class="flex-1 p-4 border-b-1 bg-light-300">
-        <form-canvas v-model="config" />
+        <form-canvas
+          v-model="config"
+          @select="handleSelect"
+        />
       </div>
-      <div class="w-64 border-l-1 border-r-1 border-b-1" />
+      <div class="w-64 p-2 border-l-1 border-r-1 border-b-1">
+        <cl-form
+          v-if="index !== -1"
+          v-model="config[index]"
+          :form-items="itemConfig"
+          :cloumn="1"
+        />
+      </div>
     </div>
   </div>
 </template>
@@ -39,10 +49,24 @@
 import { ref } from 'vue'
 import ComSelect from './com-select.vue'
 import FormCanvas from './canvas.vue'
-import { FormItem, layer } from '@ccool/ui'
+import { ClComs, FormItem, layer } from '@ccool/ui'
 import VueJsonView from '@matpool/vue-json-view'
 
 const config = ref<FormItem[]>([])
+
+const index = ref<number>(-1)
+const itemConfig = ref<FormItem[]>([
+  {
+    com: ClComs.INPUT,
+    field: 'field',
+    label: '属性'
+  },
+  {
+    com: ClComs.INPUT,
+    field: 'label',
+    label: '标签'
+  }
+])
 
 function previewJson () {
   layer.open({
@@ -55,6 +79,10 @@ function previewJson () {
       />
     )
   })
+}
+
+function handleSelect (i: number) {
+  index.value = i
 }
 
 function clear () {
