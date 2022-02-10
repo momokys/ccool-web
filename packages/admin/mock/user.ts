@@ -75,7 +75,7 @@ export default [
             menuId: 8,
             menuCode: 'FormDesigner',
             menuType: 'M',
-            menuName: '表单设计',
+            menuName: '表单设计器',
             parentId: 1,
             path: '/system/designer',
             src: '/src/views/system/designer/index.vue',
