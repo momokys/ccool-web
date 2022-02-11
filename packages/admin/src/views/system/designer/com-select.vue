@@ -31,6 +31,6 @@
 </template>
 
 <script lang="ts" setup>
-import ComSet from './com-list'
+import ComSet from './config/com-list'
 import { ClDrag } from '@ccool/ui'
 </script>

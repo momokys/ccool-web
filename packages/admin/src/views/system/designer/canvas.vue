@@ -32,9 +32,11 @@ const formItems = ref<FormItem[]>(props.modelValue)
 
 const FormItems = computed(() => {
   return formItems.value.map((item, index) => {
+    console.log(item)
     return {
-      com: (props: any) => {
+      com: (props: any, ctx: any) => {
         console.log(props)
+        console.log(ctx)
         const com = resolveCom(item.com)
         return (
           <cl-drag onClick={ handleSelect(index) }>
@@ -74,7 +76,8 @@ function handleDrop (com: any) {
   formItems.value.push({
     com: com,
     field: 'field1',
-    label: '属性1'
+    label: '属性1',
+    attrs: {}
   })
   nextTick(() => {
     handleSelect(formItems.value.length - 1)()

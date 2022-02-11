@@ -47,7 +47,7 @@ import {
 } from '@ccool/ui'
 import VueJsonView from '@matpool/vue-json-view'
 import { components } from '@/constant/components'
-import defaultFormItems from '@/forms/example'
+import defaultFormItems from '@/forms/examples/dynamic-form'
 const defaultMeta = {
   label: '属性',
   field: 'prop',

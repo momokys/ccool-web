@@ -34,11 +34,10 @@
         />
       </div>
       <div class="w-64 p-2 border-l-1 border-r-1 border-b-1">
-        <cl-form
+        <component
           v-if="index !== -1"
           v-model="config[index]"
-          :form-items="itemConfig"
-          :cloumn="1"
+          :is="InputCfgForm"
         />
       </div>
     </div>
@@ -49,24 +48,13 @@
 import { ref } from 'vue'
 import ComSelect from './com-select.vue'
 import FormCanvas from './canvas.vue'
-import { ClComs, FormItem, layer } from '@ccool/ui'
+import { FormItem, layer } from '@ccool/ui'
 import VueJsonView from '@matpool/vue-json-view'
+import InputCfgForm from './config/forms/input.vue'
 
 const config = ref<FormItem[]>([])
 
 const index = ref<number>(-1)
-const itemConfig = ref<FormItem[]>([
-  {
-    com: ClComs.INPUT,
-    field: 'field',
-    label: '属性'
-  },
-  {
-    com: ClComs.INPUT,
-    field: 'label',
-    label: '标签'
-  }
-])
 
 function previewJson () {
   layer.open({
@@ -86,6 +74,7 @@ function handleSelect (i: number) {
 }
 
 function clear () {
+  index.value = -1
   config.value = []
 }
 

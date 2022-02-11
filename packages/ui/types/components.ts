@@ -4,5 +4,6 @@ export enum ClComs {
   SELECT = 'ClSelect',
   CHECKBOX_GROUP = 'ClCheckboxGroup',
   RADIO_GROUP = 'ClRadioGroup',
-  DATE_PICKER = 'ElDatePicker'
+  DATE_PICKER = 'ElDatePicker',
+  DIVIDER = 'ClDivider'
 }
