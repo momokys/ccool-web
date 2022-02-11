@@ -14,29 +14,28 @@
 </template>
 
 <script lang="tsx" setup>
-import { ref, computed, PropType, watch, resolveDynamicComponent, Component, VNode, nextTick } from 'vue'
+import { ref, computed, PropType, resolveDynamicComponent, Component, VNode } from 'vue'
 import { ClDrag, FormItem } from '@ccool/ui'
 import { isString } from 'lodash'
 
 const props = defineProps({
-  modelValue: {
+  config: {
     type: Array as PropType<FormItem[]>,
     default: () => ([])
   }
 })
 
-const emit = defineEmits(['update:modelValue', 'select'])
+const emit = defineEmits(['select', 'insert'])
 
 const data = ref<any>({})
-const formItems = ref<FormItem[]>(props.modelValue)
 
 const FormItems = computed(() => {
-  return formItems.value.map((item, index) => {
-    console.log(item)
+  return props.config.map((item, index) => {
     return {
+      ...item,
+      field: undefined,
+      label: undefined,
       com: (props: any, ctx: any) => {
-        console.log(props)
-        console.log(ctx)
         const com = resolveCom(item.com)
         return (
           <cl-drag onClick={ handleSelect(index) }>
@@ -56,32 +55,8 @@ const FormItems = computed(() => {
   })
 })
 
-watch(
-  () => props.modelValue,
-  () => {
-    formItems.value = props.modelValue
-  },
-  { deep: true }
-)
-
-watch(
-  formItems.value,
-  () => {
-    emit('update:modelValue', formItems.value)
-  },
-  { deep: true }
-)
-
 function handleDrop (com: any) {
-  formItems.value.push({
-    com: com,
-    field: 'field1',
-    label: '属性1',
-    attrs: {}
-  })
-  nextTick(() => {
-    handleSelect(formItems.value.length - 1)()
-  })
+  emit('insert', com)
 }
 
 function handleSelect (index: number) {

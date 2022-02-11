@@ -1,15 +1,19 @@
 <template>
-  <div>
-    <cl-form
-      v-model="ModelValue"
-      :form-items="basicFormItems"
-      :cloumn="1"
-    />
-    <cl-form
-      v-model="ModelValue.attrs"
-      :form-items="attrsFormItems"
-      :cloumn="1"
-    />
+  <div class="h-full">
+    <el-scrollbar>
+      <cl-form
+        v-model="ModelValue"
+        :form-items="basicFormItems"
+        :cloumn="1"
+        :label-width="'90px'"
+      />
+      <cl-form
+        v-model="ModelValue.attrs"
+        :form-items="attrsFormItems"
+        :cloumn="1"
+        :label-width="'90px'"
+      />
+    </el-scrollbar>
   </div>
 </template>
 
@@ -19,7 +23,6 @@ import { PropType, computed } from 'vue'
 
 const props = defineProps({
   modelValue: {
-    // type: Object as PropType<{ attrs: Record<string, any> }>,
     type: Object as PropType<any>,
     required: true
   }
@@ -37,7 +40,7 @@ const basicFormItems: FormItem[] = [
   {
     com: ClComs.INPUT,
     field: 'field',
-    label: '字段ID',
+    label: '字段ID：',
     attrs: {
       clearable: true
     }
@@ -45,7 +48,8 @@ const basicFormItems: FormItem[] = [
   {
     com: ClComs.INPUT,
     field: 'label',
-    label: '字段名',
+    label: '字段名：',
+    value: false,
     attrs: {
       clearable: true
     }
@@ -62,7 +66,7 @@ const attrsFormItems: FormItem[] = [
   {
     com: ClComs.SELECT,
     field: 'type',
-    label: '类型',
+    label: '类型：',
     value: 'text',
     attrs: {
       options: [
@@ -71,6 +75,16 @@ const attrsFormItems: FormItem[] = [
         { label: '密码框', value: 'password' }
       ]
     }
+  },
+  {
+    com: ClComs.SWITCH,
+    field: 'clearable',
+    label: '清空按钮：'
+  },
+  {
+    com: ClComs.INPUT,
+    field: 'placeholder',
+    label: '提示：'
   }
 ]
 </script>

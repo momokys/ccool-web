@@ -29,8 +29,9 @@
       </div>
       <div class="flex-1 p-4 border-b-1 bg-light-300">
         <form-canvas
-          v-model="config"
+          :config="config"
           @select="handleSelect"
+          @insert="handleInsert"
         />
       </div>
       <div class="w-64 p-2 border-l-1 border-r-1 border-b-1">
@@ -71,6 +72,16 @@ function previewJson () {
 
 function handleSelect (i: number) {
   index.value = i
+}
+
+function handleInsert (com: string) {
+  config.value.push({
+    com,
+    field: 'field',
+    label: '字段名',
+    attrs: {}
+  })
+  index.value = config.value.length - 1
 }
 
 function clear () {
