@@ -33,7 +33,7 @@ const formData = ref<any>({})
 const formItems: FormItem[] = [
   {
     com: ClComs.INPUT,
-    index: 'username',
+    field: 'username',
     label: '用户名',
     on: {
       change: ({ fctx }: any) => {
@@ -43,7 +43,7 @@ const formItems: FormItem[] = [
   },
   {
     com: ClComs.INPUT,
-    index: 'password',
+    field: 'password',
     label: '密码',
     attrs: {
       type: 'password'
@@ -61,7 +61,7 @@ function handleClick (shade: boolean) {
     shade,
     content: () => (
       <cl-form
-        model={formData.value}
+        v-model={formData.value}
         form-items={formItems}
       />
     ),
