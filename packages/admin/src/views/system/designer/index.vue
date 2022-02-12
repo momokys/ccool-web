@@ -38,7 +38,7 @@
         <component
           v-if="index !== -1"
           v-model="config[index]"
-          :is="InputCfgForm"
+          :is="cform"
         />
       </div>
     </div>
@@ -46,16 +46,18 @@
 </template>
 
 <script lang="tsx" setup>
-import { ref } from 'vue'
+import { ref, markRaw } from 'vue'
 import ComSelect from './com-select.vue'
 import FormCanvas from './canvas.vue'
 import { FormItem, layer } from '@ccool/ui'
 import VueJsonView from '@matpool/vue-json-view'
-import InputCfgForm from './config/forms/input.vue'
+import cfmap from './config/forms'
 
 const config = ref<FormItem[]>([])
 
 const index = ref<number>(-1)
+
+const cform = ref<any>({})
 
 function previewJson () {
   layer.open({
@@ -71,7 +73,10 @@ function previewJson () {
 }
 
 function handleSelect (i: number) {
-  index.value = i
+  cfmap.get(config.value[i].com)().then((res: any) => {
+    cform.value = markRaw(res.default)
+    index.value = i
+  })
 }
 
 function handleInsert (com: string) {
@@ -79,9 +84,10 @@ function handleInsert (com: string) {
     com,
     field: 'field',
     label: '字段名',
-    attrs: {}
+    attrs: {},
+    on: {}
   })
-  index.value = config.value.length - 1
+  handleSelect(config.value.length - 1)
 }
 
 function clear () {

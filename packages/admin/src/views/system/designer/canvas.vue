@@ -31,12 +31,21 @@ const data = ref<any>({})
 
 const FormItems = computed(() => {
   return props.config.map((item, index) => {
+    const events = Object
+      .entries(item.on || {})
+      .reduce((result, [key, code]) => {
+        const fn = new Function('', `return ${code}`)
+        result[key] = fn()
+        return result
+      }, {} as Record<string, any>)
     return {
       ...item,
       field: undefined,
       label: undefined,
+      on: events,
       com: (props: any, ctx: any) => {
         const com = resolveCom(item.com)
+        console.log(props)
         return (
           <cl-drag onClick={ handleSelect(index) }>
             <el-form-item

@@ -13,12 +13,6 @@
         :cloumn="1"
         :label-width="'90px'"
       />
-      <cl-form
-        v-model="ModelValue.on"
-        :form-items="eventFormItems"
-        :cloumn="1"
-        :label-width="'90px'"
-      />
     </el-scrollbar>
   </div>
 </template>
@@ -61,6 +55,7 @@ const basicFormItems: FormItem[] = [
     }
   }
 ]
+
 const attrsFormItems: FormItem[] = [
   {
     com: ClComs.DIVIDER,
@@ -69,54 +64,9 @@ const attrsFormItems: FormItem[] = [
     }
   },
   {
-    com: ClComs.SELECT,
-    field: 'type',
-    label: '类型：',
-    value: 'text',
-    attrs: {
-      options: [
-        { label: '单行文本框', value: 'text' },
-        { label: '多行文本框', value: 'textarea' },
-        { label: '密码框', value: 'password' }
-      ]
-    }
-  },
-  {
-    com: ClComs.SWITCH,
-    field: 'clearable',
-    label: '清空按钮：'
-  },
-  {
-    com: ClComs.INPUT,
-    field: 'placeholder',
-    label: '提示：'
+    com: ClComs.DINPUT,
+    field: 'options',
+    label: '选项'
   }
 ]
-
-const eventFormItems: FormItem[] = [
-  {
-    com: ClComs.DIVIDER,
-    attrs: {
-      text: '组件事件'
-    }
-  },
-  {
-    com: ClComs.LAYER_INPUT,
-    field: 'change',
-    label: 'onChange：',
-    value: `({ model, fctx, ev }) => {
-  // todo...
-}`,
-    attrs: {
-      text: '编写代码',
-      type: 'code-editor',
-      title: '代码编辑',
-      codeEditorProps: {
-        maxLines: 1000,
-        minLines: 1000
-      }
-    }
-  }
-]
-
 </script>

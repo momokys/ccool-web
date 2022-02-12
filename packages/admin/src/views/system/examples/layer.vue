@@ -24,45 +24,22 @@
 <script lang="tsx" setup>
 import { ref } from 'vue'
 import {
-  ClComs,
-  FormItem,
+  ClCodeEditor,
   layer
 } from '@ccool/ui'
 
-const formData = ref<any>({})
-const formItems: FormItem[] = [
-  {
-    com: ClComs.INPUT,
-    field: 'username',
-    label: '用户名',
-    on: {
-      change: ({ fctx }: any) => {
-        console.log(fctx.model)
-      }
-    }
-  },
-  {
-    com: ClComs.INPUT,
-    field: 'password',
-    label: '密码',
-    attrs: {
-      type: 'password'
-    },
-    on: {
-      change: ({ fctx }: any) => {
-        console.log(fctx.model)
-      }
-    }
-  }
-]
+const content = ref<any>('')
 
 function handleClick (shade: boolean) {
   layer.open({
     shade,
+    height: '500px',
+    title: '代码编辑器  ',
     content: () => (
-      <cl-form
-        v-model={formData.value}
-        form-items={formItems}
+      <ClCodeEditor
+        v-model={ content.value }
+        maxLines={ 1000 }
+        minLines={ 1000 }
       />
     ),
     btns: [
@@ -73,17 +50,15 @@ function handleClick (shade: boolean) {
         }
       },
       {
-        text: '确定',
-        loadable: true,
+        text: '运行',
         attrs: {
           type: 'primary'
         },
-        handle: ({ done }) => {
-          setTimeout(() => {
-            done()
-            layer.close()
-            console.log(formData.value)
-          }, 3000)
+        handle: () => {
+          const fn = new Function(content.value)
+          const result = fn()
+          layer.success(`运行结果：${result}`)
+          layer.close()
         }
       }
     ]

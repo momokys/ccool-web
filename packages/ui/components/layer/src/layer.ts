@@ -57,7 +57,7 @@ export const layer = {
 
     curops = options
 
-    Object.assign(instance.props, options)
+    Object.assign(instance.props, { btns: [], ...options })
     if (instance && instance.exposed) {
       instance.exposed.visible.value = true
     }

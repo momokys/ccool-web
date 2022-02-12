@@ -89,7 +89,7 @@ const Events = computed(() => {
   const _events = props.formItem.on || {}
   return Object.entries(_events).reduce((result, [name, handle]) => {
     result[name] = (ev: any) => {
-      handle({ fctx: fctx as FormContext, ev })
+      handle({ model: fctx?.model, fctx: fctx as FormContext, ev })
     }
     return result
   }, {} as Record<string, any>)

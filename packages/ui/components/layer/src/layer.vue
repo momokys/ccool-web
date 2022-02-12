@@ -19,12 +19,14 @@
         </div>
       </div>
       <div class="cl-layer__content">
-        <template v-if="typeof content !== 'string'">
-          <component :is="Content" />
-        </template>
-        <template v-else>
-          {{ content }}
-        </template>
+        <el-scrollbar>
+          <template v-if="typeof content !== 'string'">
+            <component :is="Content" />
+          </template>
+          <template v-else>
+            {{ content }}
+          </template>
+        </el-scrollbar>
       </div>
       <div class="cl-layer__footer">
         <cl-button-group :btn-items="btns" />
@@ -118,11 +120,6 @@ export default {
       margin-left: auto;
 
       span {
-        // display: flex;
-        // justify-content: center;
-        // align-items: center;
-        // width: 32px;
-        // height: 32px;
         margin-left: 8px;
         cursor: pointer;
         transition: color .3s;

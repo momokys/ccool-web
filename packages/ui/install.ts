@@ -11,7 +11,9 @@ const clui: Plugin = {
     options: ClOptionsType = clops
   ) {
     // 安装 ElementPlus
-    app.use(ElementPlus)
+    app.use(ElementPlus, {
+      size: 'small'
+    })
     Object.entries(AllIcons).forEach(([iconName, icon]) => {
       app.component(iconName, icon)
     })

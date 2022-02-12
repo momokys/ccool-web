@@ -29,7 +29,7 @@ export type Rule = {
   defaultField?: Rule;
   transform?: (value: any) => any,
   message?: string | ((a?: string) => string),
-  asyncValidator?: (props: { fctx: FormContext, value: any }) => void,
+  asyncValidator?: (props: { model: any, fctx: FormContext, value: any }) => void,
   validator?: (props: { fctx: FormContext, value: any }) => void,
   trigger: 'blur' | 'change'
 }
@@ -37,7 +37,7 @@ export type Rule = {
 export type Base = {
   com: string | VNode | Component,
   attrs?: Record<string, any>,
-  on?: Record<string, (props: { fctx: FormContext, ev: any }) => void>,
+  on?: Record<string, (props: { model: any, fctx: FormContext, ev: any }) => void>,
   disabled?: (fctx: FormContext) => boolean
 }
 

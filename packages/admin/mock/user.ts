@@ -127,6 +127,15 @@ export default [
             parentId: 3,
             path: '/system/examples/layer',
             src: '/src/views/system/examples/layer.vue'
+          },
+          {
+            menuId: 8,
+            menuCode: 'ExampleCodeEditor',
+            menuType: 'M',
+            menuName: '代码编辑器',
+            parentId: 3,
+            path: '/system/examples/code-editor',
+            src: '/src/views/system/examples/code-editor.vue'
           }
         ],
         code: 0
