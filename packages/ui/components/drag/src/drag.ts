@@ -11,6 +11,10 @@ export default defineComponent({
       type: String,
       default: undefined
     },
+    target: {
+      type: String,
+      default: ''
+    },
     data: {
       type: [String, Number, Object] as PropType<any>,
       default: ''
@@ -26,7 +30,7 @@ export default defineComponent({
       ...ctx.attrs,
       draggable: props.draggable,
       onDragstart: (ev: any) => {
-        ev.dataTransfer.setData('data', props.data)
+        ev.dataTransfer.setData('msg', JSON.stringify({ data: props.data, target: props.target }))
         ctx.emit('drag')
       },
       onDragleave: (ev: any) => {
@@ -42,7 +46,10 @@ export default defineComponent({
         ev.preventDefault()
       },
       onDrop: (ev: any) => {
-        ctx.emit('drop', ev.dataTransfer.getData('data'))
+        const msg = JSON.parse(ev.dataTransfer.getData('msg'))
+        if (msg.target === props.name) {
+          ctx.emit('drop', msg.data)
+        }
       }
     }
     return () => h(

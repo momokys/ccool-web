@@ -22,11 +22,11 @@ export default defineComponent({
     }
   },
   beforeRouteEnter (to, from, next) {
-    console.log(to)
+    // console.log(to)
   },
   setup (props) {
     onBeforeUpdate(() => {
-      console.log(props.com)
+      // console.log(props.com)
     })
   }
 })

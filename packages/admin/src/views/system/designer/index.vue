@@ -35,10 +35,11 @@
         />
       </div>
       <div class="w-64 p-2 border-l-1 border-r-1 border-b-1">
-        <component
+        <com-editor
+          ref="comEditorRef"
           v-if="index !== -1"
           v-model="config[index]"
-          :is="cform"
+          :config="comEditorConfig"
         />
       </div>
     </div>
@@ -46,23 +47,28 @@
 </template>
 
 <script lang="tsx" setup>
-import { ref, markRaw } from 'vue'
+import { ref } from 'vue'
 import ComSelect from './com-select.vue'
 import FormCanvas from './canvas.vue'
 import { FormItem, layer } from '@ccool/ui'
 import VueJsonView from '@matpool/vue-json-view'
-import cfmap from './config/forms'
+import comEditorConfigMap from './config/forms'
+import ComEditor from './com-editor.vue'
+import { ComEditorConfig } from './config/types'
 
 const config = ref<FormItem[]>([])
 
 const index = ref<number>(-1)
 
-const cform = ref<any>({})
+const comEditorConfig = ref<ComEditorConfig>()
+
+const comEditorRef = ref<InstanceType<typeof ComEditor>>()
 
 function previewJson () {
   layer.open({
     title: '表单配置 JSON 预览',
     shade: true,
+    height: '500px',
     content: (
       <VueJsonView
         src={ config.value }
@@ -73,21 +79,28 @@ function previewJson () {
 }
 
 function handleSelect (i: number) {
-  cfmap.get(config.value[i].com)().then((res: any) => {
-    cform.value = markRaw(res.default)
+  comEditorConfigMap.get(config.value[i].com)().then((res: any) => {
+    comEditorConfig.value = res.default
     index.value = i
   })
 }
 
 function handleInsert (com: string) {
-  config.value.push({
-    com,
-    field: 'field',
-    label: '字段名',
-    attrs: {},
-    on: {}
-  })
-  handleSelect(config.value.length - 1)
+  console.log(comEditorConfigMap.get(com))
+  comEditorConfigMap
+    .get(com)()
+    .then((res: any) => {
+      config.value.push({
+        com,
+        field: 'field',
+        label: '字段名',
+        attrs: {},
+        on: {}
+      })
+      comEditorConfig.value = res.default
+      index.value = config.value.length - 1
+      comEditorRef.value?.refresh()
+    })
 }
 
 function clear () {

@@ -54,7 +54,8 @@ watch(
   () => props.modelValue,
   () => {
     native.value = props.modelValue
-  }
+  },
+  { immediate: true }
 )
 
 function handleClick () {

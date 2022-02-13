@@ -27,7 +27,7 @@
 <script lang="tsx" setup>
 import { PropType, VNode, inject, computed, resolveDynamicComponent } from 'vue'
 import type { Component } from 'vue'
-import { isString } from 'lodash'
+import { isEmpty, isString } from 'lodash'
 import { FormItem, FormContext, clFormKey } from './form'
 
 const props = defineProps({
@@ -111,7 +111,11 @@ function resolveLabel (formItem: FormItem) {
 }
 
 function initValue () {
-  if (props.formItem.field && props.formItem.value) {
+  if (
+    props.formItem.field &&
+    props.formItem.value &&
+    isEmpty(Model.value[props.formItem.field])
+  ) {
     Model.value[props.formItem.field] = props.formItem.value
   }
 }

@@ -28,7 +28,7 @@ defineProps({
   },
   size: {
     type: String as PropType<'large' | 'default' | 'small'>,
-    default: () => 'default'
+    default: 'small'
   }
 })
 
