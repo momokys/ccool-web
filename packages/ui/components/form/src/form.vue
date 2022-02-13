@@ -12,6 +12,7 @@
           :inline="layout === 'inline'"
           :label-width="labelWidth"
           :label-position="labelPosition"
+          :size="size"
           :style="{ paddingRight: layout === 'inline' ? '0' : '20px' }"
         >
           <template v-if="layout === 'grid'">

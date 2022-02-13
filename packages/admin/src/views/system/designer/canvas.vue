@@ -8,28 +8,30 @@
   >
     <cl-form
       v-model="data"
-      :form-items="FormItems"
+      v-bind="{ ...config, formItems: FormItems}"
     />
   </cl-drag>
 </template>
 
 <script lang="tsx" setup>
 import { ref, computed, PropType, resolveDynamicComponent, Component, VNode } from 'vue'
-import { ClDrag, FormItem } from '@ccool/ui'
-import { isString } from 'lodash'
+import { ClDrag, FormItem, layer } from '@ccool/ui'
+import _ from 'lodash'
 
 const props = defineProps({
   config: {
-    type: Array as PropType<FormItem[]>,
-    default: () => ([])
+    type: Object as PropType<Record<string, any> & { formItems: FormItem[] }>,
+    default: () => ({ formItems: [] })
   }
 })
+
+const global = window as any
 
 const emit = defineEmits(['select', 'insert'])
 
 const data = ref<any>({})
 
-const FormItems = computed(() => normalize(props.config))
+const FormItems = computed(() => normalize(props.config.formItems))
 
 function handleDrop (com: any) {
   emit('insert', com)
@@ -44,7 +46,7 @@ function handleSelect (index: number) {
 function resolveCom (com: string | Component | VNode | undefined) {
   if (com === undefined) {
     return <></>
-  } else if (isString(com)) {
+  } else if (_.isString(com)) {
     return resolveDynamicComponent(com)
   } else {
     return com
@@ -71,16 +73,19 @@ function normalize (formItems: FormItem[]) {
 
     return {
       ...item,
-      com: (props: any, ctx: any) => {
+      com: (_props: any, ctx: any) => {
         const com = resolveCom(item.com)
         return (
-          <cl-drag onClick={ handleSelect(index) }>
+          <cl-drag
+            style={{ display: props.config.layout === 'inline' ? 'inline-block' : 'block' }}
+            onClick={ handleSelect(index) }
+          >
             <el-form-item
               prop={ item.field }
               label={ item.label }
             >
               <com
-                { ...props }
+                { ..._props }
                 v-model={ data.value[item.field || ''] }
               />
             </el-form-item>
@@ -95,4 +100,9 @@ function normalize (formItems: FormItem[]) {
   })
 }
 
+function init () {
+  global.layer = layer
+}
+
+init()
 </script>

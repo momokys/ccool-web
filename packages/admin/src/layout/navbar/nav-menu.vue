@@ -9,7 +9,7 @@
         'text-blue-400': direct.path === ActiveDirect.path,
         'border-blue-400': direct.path === ActiveDirect.path
       }"
-      class="h-full flex items-center mr-5 border-b-2 cursor-pointer duration-300 hover:text-blue-400"
+      class="h-full flex items-center mr-5 border-b-2 text-sm cursor-pointer duration-300 hover:text-blue-400"
       @click="handleClick(direct)"
     >
       <cl-icon :icon="direct.icon" />

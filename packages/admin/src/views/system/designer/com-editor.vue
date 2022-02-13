@@ -10,6 +10,7 @@
         :form-items="basicFormItems"
         :cloumn="1"
         :label-width="'90px'"
+        :label-position="'left'"
       />
       <el-divider>组件参数</el-divider>
       <cl-form
@@ -17,6 +18,7 @@
         :form-items="config.attrs"
         :cloumn="1"
         :label-width="'90px'"
+        :label-position="'left'"
       />
       <el-divider>组件事件</el-divider>
       <cl-form
@@ -24,6 +26,7 @@
         :form-items="eventFormItems"
         :cloumn="1"
         :label-width="'90px'"
+        :label-position="'left'"
       />
     </el-scrollbar>
   </div>

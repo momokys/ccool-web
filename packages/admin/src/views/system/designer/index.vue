@@ -11,6 +11,15 @@
         JSON 预览
       </el-button>
       <el-button
+        type="success"
+        size="small"
+        plain
+        class="ml-2"
+        @click="exportCode"
+      >
+        导出代码
+      </el-button>
+      <el-button
         type="danger"
         size="small"
         plain
@@ -20,7 +29,10 @@
         清空
       </el-button>
     </div>
-    <div class="flex flex-1">
+    <div
+      class="flex"
+      style="height: calc(100% - 1rem);"
+    >
       <div
         class="flex flex-wrap border-l-1 border-r-1 border-b-1"
         style="width: 250px;"
@@ -35,12 +47,28 @@
         />
       </div>
       <div class="w-64 p-2 border-l-1 border-r-1 border-b-1">
-        <com-editor
-          ref="comEditorRef"
-          v-if="index !== -1"
-          v-model="config[index]"
-          :config="comEditorConfig"
-        />
+        <el-tabs
+          v-model="activeName"
+          class="h-full"
+        >
+          <el-tab-pane
+            label="表单配置"
+            name="form"
+          >
+            <form-editor v-model="config" />
+          </el-tab-pane>
+          <el-tab-pane
+            label="组件配置"
+            name="com"
+          >
+            <com-editor
+              ref="comEditorRef"
+              v-if="index !== -1"
+              v-model="config.formItems[index]"
+              :config="comEditorConfig"
+            />
+          </el-tab-pane>
+        </el-tabs>
       </div>
     </div>
   </div>
@@ -48,21 +76,58 @@
 
 <script lang="tsx" setup>
 import { ref } from 'vue'
-import ComSelect from './com-select.vue'
-import FormCanvas from './canvas.vue'
 import { FormItem, layer } from '@ccool/ui'
 import VueJsonView from '@matpool/vue-json-view'
-import comEditorConfigMap from './config/forms'
+import ComSelect from './com-select.vue'
+import FormCanvas from './canvas.vue'
 import ComEditor from './com-editor.vue'
+import FormEditor from './form-editor.vue'
+import comEditorConfigMap from './config/forms'
 import { ComEditorConfig } from './config/types'
+import { generateCode } from './utils/code-generator'
 
-const config = ref<FormItem[]>([])
+const activeName = ref<string>('form')
+
+const config = ref<Record<string, any> & { formItems: FormItem[] }>({
+  formItems: []
+})
 
 const index = ref<number>(-1)
 
 const comEditorConfig = ref<ComEditorConfig>()
 
 const comEditorRef = ref<InstanceType<typeof ComEditor>>()
+
+const code = ref<string>('')
+
+function handleSelect (i: number) {
+  comEditorConfigMap.get(config.value.formItems[i].com)().then((res: any) => {
+    comEditorConfig.value = res.default
+    index.value = i
+  })
+}
+
+function handleInsert (com: string) {
+  if (!comEditorConfigMap.has(com)) {
+    layer.error(`没有找到 ${com} 的编辑配置`)
+    return
+  }
+  comEditorConfigMap
+    .get(com)()
+    .then((res: any) => {
+      config.value.formItems.push({
+        com,
+        field: 'field',
+        label: '字段名',
+        attrs: {},
+        on: {}
+      })
+      comEditorConfig.value = res.default
+      index.value = config.value.formItems.length - 1
+      comEditorRef.value?.refresh()
+      activeName.value = 'com'
+    })
+}
 
 function previewJson () {
   layer.open({
@@ -78,34 +143,27 @@ function previewJson () {
   })
 }
 
-function handleSelect (i: number) {
-  comEditorConfigMap.get(config.value[i].com)().then((res: any) => {
-    comEditorConfig.value = res.default
-    index.value = i
+function exportCode () {
+  code.value = generateCode(config.value)
+  layer.open({
+    shade: true,
+    height: '500px',
+    title: '导出代码',
+    content: () => (
+      <cl-code-editor
+        v-model={ code.value }
+        mode={ 'html' }
+        readonly={ true }
+        maxLines={ 1000 }
+        minLines={ 1000 }
+      />
+    )
   })
-}
-
-function handleInsert (com: string) {
-  console.log(comEditorConfigMap.get(com))
-  comEditorConfigMap
-    .get(com)()
-    .then((res: any) => {
-      config.value.push({
-        com,
-        field: 'field',
-        label: '字段名',
-        attrs: {},
-        on: {}
-      })
-      comEditorConfig.value = res.default
-      index.value = config.value.length - 1
-      comEditorRef.value?.refresh()
-    })
 }
 
 function clear () {
   index.value = -1
-  config.value = []
+  config.value.formItems = []
 }
 
 </script>

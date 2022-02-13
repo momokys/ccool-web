@@ -91,13 +91,16 @@ export const formProps = {
       return set.has(value)
     }
   },
+  size: {
+    type: String as PropType<'large' | 'default' | 'small'>
+  },
   btns: {
     type: Array as PropType<BtnItem[]>,
     default: () => ([])
   }
 }
 
-export type FormProps = ExtractPropTypes<typeof formProps>
+export type FormProps = Partial<ExtractPropTypes<typeof formProps>>
 
 export const clFormKey = Symbol('clFormKey')
 
