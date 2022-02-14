@@ -50,7 +50,7 @@ function findSvgFile (dir: string): string[] {
   return svgRes
 }
 
-export const svgBuilder = (
+export const SvgBuilder = (
   path: string,
   perfix = 'icon'
 ): Plugin | undefined => {

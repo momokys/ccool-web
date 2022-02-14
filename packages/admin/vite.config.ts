@@ -7,7 +7,7 @@ import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 import WindiCSS from 'vite-plugin-windicss'
 import { viteMockServe } from 'vite-plugin-mock'
-import { svgBuilder } from './src/plugins/svg-builder'
+import { SvgBuilder, FormGenerator } from './src/plugins'
 
 export default defineConfig({
   base: '/ccool/',
@@ -64,7 +64,8 @@ export default defineConfig({
     viteMockServe({
       localEnabled: true
     }),
-    svgBuilder('./src/assets/icons/')
+    SvgBuilder('./src/assets/icons/'),
+    FormGenerator()
   ],
   css: {
     postcss: {
