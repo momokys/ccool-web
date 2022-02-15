@@ -44,6 +44,7 @@
           :config="config"
           @select="handleSelect"
           @insert="handleInsert"
+          @move="handleMove"
         />
       </div>
       <div class="w-64 p-2 border-l-1 border-r-1 border-b-1">
@@ -133,6 +134,12 @@ function handleInsert (com: string) {
       comEditorRef.value?.refresh()
       activeName.value = 'com'
     })
+}
+
+function handleMove (src: number, dest: number) {
+  const tmp = config.value.formItems[dest]
+  config.value.formItems[dest] = config.value.formItems[src]
+  config.value.formItems[src] = tmp
 }
 
 function previewJson () {

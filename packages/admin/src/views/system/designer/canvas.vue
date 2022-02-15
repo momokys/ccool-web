@@ -30,7 +30,7 @@ const props = defineProps({
   }
 })
 
-const emit = defineEmits(['select', 'insert'])
+const emit = defineEmits(['select', 'insert', 'move'])
 
 const global = window as any
 
@@ -39,10 +39,6 @@ const selectIdx = ref<number>(-1)
 const data = ref<any>({})
 
 const FormItems = computed(() => normalize(props.config.formItems))
-
-function handleDrop (com: any) {
-  emit('insert', com)
-}
 
 function resolveCom (com: string | Component | VNode | undefined) {
   if (com === undefined) {
@@ -54,6 +50,10 @@ function resolveCom (com: string | Component | VNode | undefined) {
   }
 }
 
+function handleDrop (com: any) {
+  emit('insert', com)
+}
+
 function handleSelect (index: number) {
   return () => {
     selectIdx.value = index
@@ -61,9 +61,9 @@ function handleSelect (index: number) {
   }
 }
 
-function handleMove (index: number) {
-  return (data: any) => {
-    console.log(data)
+function handleMove (dest: number) {
+  return (src: any) => {
+    emit('move', src, dest)
   }
 }
 
@@ -91,6 +91,7 @@ function normalize (formItems: FormItem[]) {
         const com = resolveCom(item.com)
         return (
           <cl-drag
+          tag={ 'div' }
             group={ 'cl-form-desiner' }
             data={ index }
             onClick={ handleSelect(index) }

@@ -32,8 +32,7 @@ export default defineComponent({
   setup (props, ctx) {
     const events: any = {
       onDragstart: (ev: any) => {
-        console.log(ev.target)
-        console.log(props.group)
+        ev.stopPropagation()
         ev.dataTransfer.setData('msg', JSON.stringify({
           data: props.data,
           target: props.target,
@@ -55,13 +54,10 @@ export default defineComponent({
       },
       onDrop: (ev: any) => {
         const msg = JSON.parse(ev.dataTransfer.getData('msg'))
-        console.log(msg.group)
-
         if (
           (msg.target !== undefined && msg.target === props.name) ||
           (msg.group !== undefined && msg.group === props.group)
         ) {
-          console.log('frvfb')
           ctx.emit('drop', msg.data)
         }
       }
