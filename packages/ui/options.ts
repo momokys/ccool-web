@@ -1,4 +1,4 @@
-import { ClOptionsType } from './types/common'
+import { ClOptionsType } from './src/types/common'
 
 export const clops: ClOptionsType = {
 }

@@ -21,7 +21,7 @@ export function generateCode (config: Record<string, any> & { formItems: FormIte
   })
   const template = `<template>
   <div>
-  <!-- ## form -->
+    <!-- ## form -->
     <cl-form
       v-model="ModelValue"
 ${props}
@@ -70,7 +70,7 @@ ${props}
 
   const script = `<script lang="ts" setup>
 import { ref, computed, PropType } from 'vue'
-import { FormItem } from '@ccool/ui'
+import { layer, FormItem } from '@ccool/ui'
 
 // ## defineProps
 const props = defineProps({
@@ -85,6 +85,8 @@ const ModelValue = computed(() => props.modelValue)
 
 // ## formItems
 const formItems = ref<FormItem[]>(${formItemScript})
-</script>`
+</script>
+`
+
   return template + '\n\n' + script
 }

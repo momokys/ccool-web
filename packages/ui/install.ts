@@ -1,8 +1,8 @@
 import { App, Plugin } from 'vue'
 import ElementPlus from 'element-plus'
 import * as AllIcons from '@element-plus/icons-vue'
-import { componentsInstall } from './components'
-import { ClOptionsType } from './types/common'
+import { componentsInstall } from './src/components'
+import { ClOptionsType } from './src/types/common'
 import { clops } from './options'
 
 const clui: Plugin = {

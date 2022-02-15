@@ -67,6 +67,11 @@
               v-model="config.formItems[index]"
               :config="comEditorConfig"
             />
+            <el-empty
+              v-if="config.formItems.length === 0"
+              :image-size="100"
+              description="未选择组件"
+            />
           </el-tab-pane>
         </el-tabs>
       </div>
@@ -85,6 +90,7 @@ import FormEditor from './form-editor.vue'
 import comEditorConfigMap from './config/forms'
 import { ComEditorConfig } from './config/types'
 import { generateCode } from './utils/code-generator'
+import axios from 'axios'
 
 const activeName = ref<string>('form')
 
@@ -157,7 +163,41 @@ function exportCode () {
         maxLines={ 1000 }
         minLines={ 1000 }
       />
-    )
+    ),
+    btns: [
+      {
+        text: '取消',
+        handle () {
+          layer.close()
+        }
+      },
+      {
+        text: '保存',
+        loadable: true,
+        attrs: {
+          type: 'primary'
+        },
+        handle ({ done }) {
+          axios.post('/cl-form', {
+            code: code.value,
+            fileName: 'form'
+          }).then(res => {
+            console.log(res)
+            if (res.data.code !== 20000) {
+              layer.error(res.data.msg)
+            } else {
+              layer.success('代码文件保存成功')
+            }
+          }).catch(err => {
+            layer.error('代码文件保存错误')
+            console.error(err)
+          }).finally(() => {
+            done()
+            layer.close()
+          })
+        }
+      }
+    ]
   })
 }
 

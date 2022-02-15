@@ -10,6 +10,11 @@
       v-model="data"
       v-bind="{ ...config, formItems: FormItems}"
     />
+    <el-empty
+      v-if="FormItems.length === 0"
+      description="从左侧选择组件添加"
+      class="mt-16"
+    />
   </cl-drag>
 </template>
 
@@ -25,9 +30,11 @@ const props = defineProps({
   }
 })
 
+const emit = defineEmits(['select', 'insert'])
+
 const global = window as any
 
-const emit = defineEmits(['select', 'insert'])
+const selectIdx = ref<number>(-1)
 
 const data = ref<any>({})
 
@@ -37,12 +44,6 @@ function handleDrop (com: any) {
   emit('insert', com)
 }
 
-function handleSelect (index: number) {
-  return () => {
-    emit('select', index)
-  }
-}
-
 function resolveCom (com: string | Component | VNode | undefined) {
   if (com === undefined) {
     return <></>
@@ -50,6 +51,19 @@ function resolveCom (com: string | Component | VNode | undefined) {
     return resolveDynamicComponent(com)
   } else {
     return com
+  }
+}
+
+function handleSelect (index: number) {
+  return () => {
+    selectIdx.value = index
+    emit('select', index)
+  }
+}
+
+function handleMove (index: number) {
+  return (data: any) => {
+    console.log(data)
   }
 }
 
@@ -77,8 +91,12 @@ function normalize (formItems: FormItem[]) {
         const com = resolveCom(item.com)
         return (
           <cl-drag
-            style={{ display: props.config.layout === 'inline' ? 'inline-block' : 'block' }}
+            group={ 'cl-form-desiner' }
+            data={ index }
             onClick={ handleSelect(index) }
+            onDrop={ handleMove(index) }
+            class={{ 'cl-drag': true, selected: selectIdx.value === index }}
+            style={{ display: props.config.layout === 'inline' ? 'inline-block' : 'block' }}
           >
             <el-form-item
               prop={ item.field }
@@ -106,3 +124,17 @@ function init () {
 
 init()
 </script>
+
+<style lang="less">
+.cl-drag {
+  padding: 10px;
+  border: 1px dashed transparent;
+  transition: border .3s;
+  &.selected {
+    border: 1px dashed #60a5fa;
+  }
+  .el-form-item {
+    margin-bottom: 0 !important;
+  }
+}
+</style>
