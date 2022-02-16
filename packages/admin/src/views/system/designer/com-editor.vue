@@ -20,6 +20,14 @@
         :label-width="'90px'"
         :label-position="'left'"
       />
+      <el-divider>组件联动</el-divider>
+      <cl-form
+        v-model="ModelValue"
+        :form-items="reactFormItems"
+        :cloumn="1"
+        :label-width="'90px'"
+        :label-position="'left'"
+      />
       <el-divider>组件事件</el-divider>
       <cl-form
         v-model="ModelValue.on"
@@ -74,6 +82,45 @@ const basicFormItems: FormItem[] = [
   }
 ]
 
+const reactFormItems: FormItem[] = [
+  {
+    com: ClComs.LAYER_INPUT,
+    field: 'disabled',
+    label: '禁用',
+    value: `model => {
+  // 建议不要修改 model
+  return false
+}`,
+    attrs: {
+      text: '编写代码',
+      type: 'code-editor',
+      title: '代码编辑',
+      inputProps: {
+        maxLines: 1000,
+        minLines: 1000
+      }
+    }
+  },
+  {
+    com: ClComs.LAYER_INPUT,
+    field: 'hidden',
+    label: '隐藏',
+    value: `model => {
+  // 建议不要修改 model
+  return false
+}`,
+    attrs: {
+      text: '编写代码',
+      type: 'code-editor',
+      title: '代码编辑',
+      inputProps: {
+        maxLines: 1000,
+        minLines: 1000
+      }
+    }
+  }
+]
+
 const eventFormItems = computed(() => props.config.events.map(ev => ({
   com: ClComs.LAYER_INPUT,
   field: ev,
@@ -85,7 +132,7 @@ const eventFormItems = computed(() => props.config.events.map(ev => ({
     text: '编写代码',
     type: 'code-editor',
     title: '代码编辑',
-    codeEditorProps: {
+    inputProps: {
       maxLines: 1000,
       minLines: 1000
     }

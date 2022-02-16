@@ -27,14 +27,16 @@ const props = defineProps({
   config: {
     type: Object as PropType<Record<string, any> & { formItems: FormItem[] }>,
     default: () => ({ formItems: [] })
+  },
+  selectIndex: {
+    type: Number,
+    required: true
   }
 })
 
 const emit = defineEmits(['select', 'insert', 'move'])
 
 const global = window as any
-
-const selectIdx = ref<number>(-1)
 
 const data = ref<any>({})
 
@@ -50,21 +52,30 @@ function resolveCom (com: string | Component | VNode | undefined) {
   }
 }
 
-function handleDrop (com: any) {
-  emit('insert', com)
+function handleDrop (com: any, dest?: number) {
+  emit('insert', com, dest)
 }
 
 function handleSelect (index: number) {
   return () => {
-    selectIdx.value = index
     emit('select', index)
   }
 }
 
 function handleMove (dest: number) {
   return (src: any) => {
-    emit('move', src, dest)
+    console.log(src)
+    if (_.isString(src)) {
+      handleDrop(src, dest)
+    } else {
+      emit('move', src, dest)
+    }
   }
+}
+
+function generateFun (code: string) {
+  const fn = new Function('', `return ${code}`)
+  return fn()
 }
 
 function normalize (formItems: FormItem[]) {
@@ -73,16 +84,17 @@ function normalize (formItems: FormItem[]) {
     const events = Object
       .entries(item.on || {})
       .reduce((result, [key, code]) => {
-        const fn = new Function('', `return ${code}`)
-        result[key] = fn()
+        const fn = generateFun(code.toString())
+        result[key] = fn
         return result
       }, {} as Record<string, any>)
+    const disabled = generateFun((item.disabled || '').toString())
+    const hidden = generateFun((item.hidden || '').toString())
 
     // 格式化 attrs
     const attrs = { ...item.attrs }
     if (item.attrs && item.attrs.options) {
-      const fn = new Function('', `return ${item.attrs.options}`)
-      attrs.options = fn()
+      attrs.options = generateFun(item.attrs.options)
     }
 
     return {
@@ -96,7 +108,7 @@ function normalize (formItems: FormItem[]) {
             data={ index }
             onClick={ handleSelect(index) }
             onDrop={ handleMove(index) }
-            class={{ 'cl-drag': true, selected: selectIdx.value === index }}
+            class={{ 'cl-drag': true, selected: props.selectIndex === index }}
             style={{ display: props.config.layout === 'inline' ? 'inline-block' : 'block' }}
           >
             <el-form-item
@@ -114,6 +126,8 @@ function normalize (formItems: FormItem[]) {
       field: undefined,
       label: undefined,
       attrs: attrs,
+      disabled: disabled,
+      hidden: hidden,
       on: events
     }
   })
@@ -121,6 +135,7 @@ function normalize (formItems: FormItem[]) {
 
 function init () {
   global.layer = layer
+  global._ = _
 }
 
 init()

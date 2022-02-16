@@ -40,7 +40,7 @@ const props = defineProps({
     type: String as PropType<'' | 'default' | 'text' | 'primary' | 'success' | 'warning' | 'info' | 'danger'>,
     default: 'default'
   },
-  codeEditorProps: {
+  inputProps: {
     type: Object as PropType<Record<string, any>>,
     default: () => ({})
   }
@@ -68,10 +68,9 @@ function handleClick () {
         content: () => (
           <cl-code-editor
             v-model={ native.value }
-            { ...props.codeEditorProps }
+            { ...props.inputProps }
           />
         ),
-        // content: h(resolveDynamicComponent('cl-code-editor'), { ...props.attrs }),
         btns: [
           {
             text: '取消',

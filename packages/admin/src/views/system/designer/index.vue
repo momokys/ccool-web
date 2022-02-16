@@ -24,6 +24,15 @@
         size="small"
         plain
         class="ml-2"
+        @click="remove"
+      >
+        删除
+      </el-button>
+      <el-button
+        type="danger"
+        size="small"
+        plain
+        class="ml-2"
         @click="clear"
       >
         清空
@@ -42,6 +51,7 @@
       <div class="flex-1 p-4 border-b-1 bg-light-300">
         <form-canvas
           :config="config"
+          :select-index="selectIdx"
           @select="handleSelect"
           @insert="handleInsert"
           @move="handleMove"
@@ -64,8 +74,8 @@
           >
             <com-editor
               ref="comEditorRef"
-              v-if="index !== -1"
-              v-model="config.formItems[index]"
+              v-if="selectIdx !== -1"
+              v-model="config.formItems[selectIdx]"
               :config="comEditorConfig"
             />
             <el-empty
@@ -99,7 +109,7 @@ const config = ref<Record<string, any> & { formItems: FormItem[] }>({
   formItems: []
 })
 
-const index = ref<number>(-1)
+const selectIdx = ref<number>(-1)
 
 const comEditorConfig = ref<ComEditorConfig>()
 
@@ -110,11 +120,11 @@ const code = ref<string>('')
 function handleSelect (i: number) {
   comEditorConfigMap.get(config.value.formItems[i].com)().then((res: any) => {
     comEditorConfig.value = res.default
-    index.value = i
+    selectIdx.value = i
   })
 }
 
-function handleInsert (com: string) {
+function handleInsert (com: string, dest?: number) {
   if (!comEditorConfigMap.has(com)) {
     layer.error(`没有找到 ${com} 的编辑配置`)
     return
@@ -130,9 +140,12 @@ function handleInsert (com: string) {
         on: {}
       })
       comEditorConfig.value = res.default
-      index.value = config.value.formItems.length - 1
+      selectIdx.value = config.value.formItems.length - 1
       comEditorRef.value?.refresh()
       activeName.value = 'com'
+      if (dest !== undefined) {
+        handleMove(config.value.formItems.length - 1, dest)
+      }
     })
 }
 
@@ -140,6 +153,7 @@ function handleMove (src: number, dest: number) {
   const tmp = config.value.formItems[dest]
   config.value.formItems[dest] = config.value.formItems[src]
   config.value.formItems[src] = tmp
+  selectIdx.value = dest
 }
 
 function previewJson () {
@@ -208,8 +222,16 @@ function exportCode () {
   })
 }
 
+function remove () {
+  const index = selectIdx.value
+  if (selectIdx.value === config.value.formItems.length - 1) {
+    selectIdx.value = selectIdx.value - 1
+  }
+  config.value.formItems.splice(selectIdx.value, 1)
+}
+
 function clear () {
-  index.value = -1
+  selectIdx.value = -1
   config.value.formItems = []
 }
 

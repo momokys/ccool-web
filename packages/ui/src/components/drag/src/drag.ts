@@ -53,6 +53,7 @@ export default defineComponent({
         ev.preventDefault()
       },
       onDrop: (ev: any) => {
+        ev.stopPropagation()
         const msg = JSON.parse(ev.dataTransfer.getData('msg'))
         if (
           (msg.target !== undefined && msg.target === props.name) ||

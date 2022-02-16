@@ -16,7 +16,7 @@ export default {
         text: '编写代码',
         type: 'code-editor',
         title: '代码编辑',
-        codeEditorProps: {
+        inputProps: {
           maxLines: 1000,
           minLines: 1000
         }

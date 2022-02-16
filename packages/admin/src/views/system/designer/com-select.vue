@@ -21,6 +21,7 @@
             :key="com.name"
             :data="com.name"
             :target="'form-canvas'"
+            :group="'cl-form-desiner'"
             class="flex flex-col justify-center items-center cursor-pointer hover:bg-blue-300 hover:text-light-50"
             style="width: 33.333%; height: 70px; "
           >
