@@ -51,7 +51,7 @@ import { useUser } from '@/store'
 const user = useUser()
 
 const loginForm = reactive({
-  userName: 'admin',
+  userName: 'momoky',
   password: '123456'
 })
 

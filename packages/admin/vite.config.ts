@@ -24,6 +24,13 @@ export default defineConfig({
         // 搜索工作区的根目录
         searchForWorkspaceRoot(process.cwd())
       ]
+    },
+    proxy: {
+      '^/api': {
+        target: 'http://localhost:8080/ccool',
+        rewrite: path => path.replace(/^\/api/, ''),
+        changeOrigin: true
+      }
     }
   },
   build: {
@@ -62,7 +69,7 @@ export default defineConfig({
     }),
     WindiCSS(),
     viteMockServe({
-      localEnabled: true
+      localEnabled: false
     }),
     SvgBuilder('./src/assets/icons/'),
     FormGenerator()

@@ -17,9 +17,9 @@ export const useUser = defineStore({
       return getToken() !== undefined
     },
     async login (data: { userName: string, password: string }) {
-      const resp = await userApi.login(data)
-      setToken(resp.data.token)
-      return resp
+      const res = await userApi.login(data)
+      setToken(res.data.token)
+      return res
     },
     async logout () {
       try {
@@ -33,8 +33,8 @@ export const useUser = defineStore({
       if (!this.hasGetInfo && this.hasLogin()) {
         const menu = useMenu()
         await menu.qryMenus()
-        const resp = await userApi.qryCurUser()
-        this.info = resp.data
+        const res = await userApi.qryCurUser()
+        this.info = res.data
         this.hasGetInfo = true
       }
       return this.info

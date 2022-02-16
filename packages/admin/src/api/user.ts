@@ -1,6 +1,6 @@
 import request from '@/http/request'
 
-const baseURL = '/user'
+const baseURL = '/uaa/user'
 
 export default {
   login (data: { userName: string, password: string }) {
@@ -24,7 +24,7 @@ export default {
   },
   qryCurMenu () {
     return request({
-      url: `${baseURL}/menu/cur`,
+      url: `${baseURL}/menu`,
       method: 'GET'
     })
   }

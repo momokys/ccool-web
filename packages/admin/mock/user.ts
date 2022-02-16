@@ -6,7 +6,7 @@ const info = {
 
 export default [
   {
-    url: '/api/user/login',
+    url: '/api/uaa/user/login',
     method: 'POST',
     response: (req: any) => {
       info.userName = req.body.userName
@@ -16,12 +16,12 @@ export default [
           userName: info,
           token: 'momoky'
         },
-        code: 0
+        code: 2000
       }
     }
   },
   {
-    url: '/api/user/logout',
+    url: '/api/uaa/user/logout',
     method: 'GET',
     response: () => {
       info.hasLogin = false
@@ -30,24 +30,24 @@ export default [
           userName: 'admin',
           token: 'momoky'
         },
-        code: 0
+        code: 2000
       }
     }
   },
   {
-    url: '/api/user/cur',
+    url: '/api/uaa/user/cur',
     method: 'GET',
     response: (req: any) => {
       return {
         data: {
           userName: info.userName
         },
-        code: 0
+        code: 2000
       }
     }
   },
   {
-    url: '/api/user/menu/cur',
+    url: '/api/uaa/user/menu/cur',
     method: 'GET',
     response: (req: any) => {
       return {
@@ -138,7 +138,7 @@ export default [
             src: '/src/views/system/examples/code-editor.vue'
           }
         ],
-        code: 0
+        code: 2000
       }
     }
   }

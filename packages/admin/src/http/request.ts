@@ -20,11 +20,12 @@ service.interceptors.request.use(req => {
 
 service.interceptors.response.use(
   resp => {
-    if (resp.data.code === 0) {
-      return Promise.resolve(resp.data)
+    const res = resp.data
+    if (res.code === 2000) {
+      return Promise.resolve(res)
     } else {
-      layer.error(resp.data.message || '系统错误')
-      return Promise.reject(resp.data)
+      layer.error(res.message || '系统错误')
+      return Promise.reject(res)
     }
   },
   err => {

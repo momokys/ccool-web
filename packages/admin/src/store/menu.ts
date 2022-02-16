@@ -20,8 +20,8 @@ export const useMenu = defineStore({
   }),
   actions: {
     async qryMenus () {
-      const resp = await userApi.qryCurMenu()
-      const trees = listToTrees(resp.data, {
+      const res = await userApi.qryCurMenu()
+      const trees = listToTrees(res.data, {
         root: 0,
         id: 'menuId',
         parentId: 'parentId',
