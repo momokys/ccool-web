@@ -47,7 +47,7 @@ export default [
     }
   },
   {
-    url: '/api/uaa/user/menu/cur',
+    url: '/api/uaa/user/menu',
     method: 'GET',
     response: (req: any) => {
       return {
