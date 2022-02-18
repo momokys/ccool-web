@@ -9,7 +9,7 @@
       :style="{ width, height }"
     >
       <div class="cl-layer__header">
-        <span class="tite">{{ title }}</span>
+        <span class="title">{{ title }}</span>
         <div class="toolbar">
           <span @click="handleClose">
             <el-icon>

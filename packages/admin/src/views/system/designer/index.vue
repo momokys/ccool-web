@@ -2,7 +2,7 @@
   <div class="flex flex-col w-full h-full">
     <div class="flex items-center h-12 p-4 border">
       <el-button
-        type="success"
+        type="primary"
         size="small"
         plain
         style="margin-left: auto;"
@@ -11,7 +11,7 @@
         JSON 预览
       </el-button>
       <el-button
-        type="success"
+        type="primary"
         size="small"
         plain
         class="ml-2"
