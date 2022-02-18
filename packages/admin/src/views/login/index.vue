@@ -31,6 +31,7 @@
             type="primary"
             size="large"
             style="width: 100%"
+            :loading="loading"
             @click="login"
           >
             LOGIN
@@ -42,13 +43,15 @@
 </template>
 
 <script lang="ts" setup>
-import { reactive } from 'vue'
+import { ref, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import { layer } from '@ccool/ui'
 import routeConfig from '@/config/route'
 import { useUser } from '@/store'
 
 const user = useUser()
+
+const loading = ref<boolean>(false)
 
 const loginForm = reactive({
   userName: 'momoky',
@@ -70,7 +73,9 @@ const rules = {
 
 const router = useRouter()
 async function login () {
+  loading.value = true
   await user.login(loginForm)
+  loading.value = false
   layer.success('欢迎登录西裤')
   router.push({
     name: routeConfig.homeName

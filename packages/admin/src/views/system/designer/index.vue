@@ -227,7 +227,7 @@ function remove () {
   if (selectIdx.value === config.value.formItems.length - 1) {
     selectIdx.value = selectIdx.value - 1
   }
-  config.value.formItems.splice(selectIdx.value, 1)
+  config.value.formItems.splice(index, 1)
 }
 
 function clear () {
