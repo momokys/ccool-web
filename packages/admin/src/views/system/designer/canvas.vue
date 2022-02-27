@@ -64,7 +64,6 @@ function handleSelect (index: number) {
 
 function handleMove (dest: number) {
   return (src: any) => {
-    console.log(src)
     if (_.isString(src)) {
       handleDrop(src, dest)
     } else {
@@ -108,7 +107,7 @@ function normalize (formItems: FormItem[]) {
             data={ index }
             onClick={ handleSelect(index) }
             onDrop={ handleMove(index) }
-            class={{ 'cl-drag': true, selected: props.selectIndex === index }}
+            class={{ 'drag-com': true, selected: props.selectIndex === index }}
             style={{ display: props.config.layout === 'inline' ? 'inline-block' : 'block' }}
           >
             <el-form-item
@@ -142,8 +141,8 @@ init()
 </script>
 
 <style lang="less">
-.cl-drag {
-  padding: 10px;
+.drag-com {
+  // padding: 10px;
   border: 1px dashed transparent;
   transition: border .3s;
   &.selected {

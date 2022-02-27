@@ -2,9 +2,10 @@
   <template v-if="icon.length > 0">
     <template v-if="prefix === 'cl-icon'">
       <i
-        class="el-icon"
-        :style="style"
         v-bind="$attrs"
+        :class="'el-icon'"
+        :style="style"
+        @click="handleClick"
       >
         <cl-svg :name="name" />
       </i>
@@ -13,6 +14,7 @@
       <el-icon
         :size="size"
         :color="color"
+        @click="handleClick"
       >
         <component :is="resolveIcon(name)" />
       </el-icon>
@@ -42,6 +44,8 @@ const props = defineProps({
   }
 })
 
+const emit = defineEmits(['click'])
+
 const reg1 = /^(\w+?-icon)-(.+$)/
 const reg2 = /-(\w)/g
 
@@ -70,6 +74,10 @@ const style = computed<CSSProperties>(() => {
 })
 
 const resolveIcon = (name?: string) => resolveDynamicComponent(name)
+
+function handleClick (ev: MouseEvent) {
+  emit('click', ev)
+}
 
 </script>
 

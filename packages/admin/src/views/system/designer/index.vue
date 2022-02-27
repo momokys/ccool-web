@@ -153,6 +153,12 @@ function handleMove (src: number, dest: number) {
   const tmp = config.value.formItems[dest]
   config.value.formItems[dest] = config.value.formItems[src]
   config.value.formItems[src] = tmp
+  if (src > dest) {
+    config.value.formItems.splice(dest, 0, config.value.formItems[src])
+    config.value.formItems.splice(src < dest ? src : src + 1, 1)
+  }
+  // config.value.formItems.splice(dest, 0, config.value.formItems[src])
+  // config.value.formItems.splice(src < dest ? src : src + 1, 1)
   selectIdx.value = dest
 }
 

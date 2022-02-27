@@ -1,4 +1,4 @@
-import { defineComponent, PropType, createVNode } from 'vue'
+import { defineComponent, PropType, h } from 'vue'
 
 export default defineComponent({
   name: 'ClDrag',
@@ -33,6 +33,7 @@ export default defineComponent({
     const events: any = {
       onDragstart: (ev: any) => {
         ev.stopPropagation()
+        ev.dataTransfer.effectAllowed = 'move'
         ev.dataTransfer.setData('msg', JSON.stringify({
           data: props.data,
           target: props.target,
@@ -63,15 +64,26 @@ export default defineComponent({
         }
       }
     }
-    return () => createVNode(
+    const classList = 'cl-drag ' + (ctx.attrs?.class || '')
+    return () => h(
       props.tag,
       {
         ...events,
         ...ctx.attrs,
+        class: classList,
         draggable: props.draggable,
         'data-cl-drag-group': props.group
       },
-      ctx.slots
+      [
+        ctx.slots.default?.(),
+        h(
+          'div',
+          {
+            class: 'cl-drag__toolbar'
+          },
+          ctx.slots.toolbar?.()
+        )
+      ]
     )
     // return () => (
     //   <div { ...attrs.value }>
