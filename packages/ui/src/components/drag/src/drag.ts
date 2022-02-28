@@ -64,27 +64,30 @@ export default defineComponent({
         }
       }
     }
-    const classList = 'cl-drag ' + (ctx.attrs?.class || '')
-    return () => h(
-      props.tag,
-      {
-        ...events,
-        ...ctx.attrs,
-        class: classList,
-        draggable: props.draggable,
-        'data-cl-drag-group': props.group
-      },
-      [
-        ctx.slots.default?.(),
-        h(
-          'div',
-          {
-            class: 'cl-drag__toolbar'
-          },
-          ctx.slots.toolbar?.()
-        )
-      ]
-    )
+    // const classList = 'cl-drag ' + (ctx.attrs?.class || '')
+    return (_props: any) => {
+      const classList = 'cl-drag ' + _props.$attrs
+      return h(
+        props.tag,
+        {
+          ...events,
+          ...ctx.attrs,
+          class: classList,
+          draggable: props.draggable,
+          'data-cl-drag-group': props.group
+        },
+        [
+          ctx.slots.default?.(),
+          h(
+            'div',
+            {
+              class: 'cl-drag__helper'
+            },
+            ctx.slots.helper?.()
+          )
+        ]
+      )
+    }
     // return () => (
     //   <div { ...attrs.value }>
     //     { ctx.slots.default ? ctx.slots.default() : <></> }

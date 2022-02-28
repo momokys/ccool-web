@@ -1,5 +1,8 @@
 <template>
-  <div class="cl-form">
+  <div
+    class="cl-form"
+    :style="{ height: Height }"
+  >
     <div class="cl-form__header" />
     <div
       class="cl-form__body"
@@ -95,6 +98,7 @@ export default {
     overflow: hidden;
     .el-scrollbar {
       .el-scrollbar__wrap {
+        height: v-bind(Height);
         max-height: v-bind(MaxHeight); // 最大高度
       }
     }

@@ -7,13 +7,13 @@
     style="background-color: #fff;"
   >
     <cl-form
+      v-if="FormItems.length > 0"
       v-model="data"
-      v-bind="{ ...config, formItems: FormItems}"
+      v-bind="{ ...config, formItems: FormItems, height: '100%'}"
     />
     <el-empty
-      v-if="FormItems.length === 0"
+      v-else
       description="从左侧选择组件添加"
-      class="mt-16"
     />
   </cl-drag>
 </template>
@@ -34,7 +34,7 @@ const props = defineProps({
   }
 })
 
-const emit = defineEmits(['select', 'insert', 'move'])
+const emit = defineEmits(['select', 'insert', 'move', 'remove', 'copy'])
 
 const global = window as any
 
@@ -100,16 +100,8 @@ function normalize (formItems: FormItem[]) {
       ...item,
       com: (_props: any, ctx: any) => {
         const com = resolveCom(item.com)
-        return (
-          <cl-drag
-          tag={ 'div' }
-            group={ 'cl-form-desiner' }
-            data={ index }
-            onClick={ handleSelect(index) }
-            onDrop={ handleMove(index) }
-            class={{ 'drag-com': true, selected: props.selectIndex === index }}
-            style={{ display: props.config.layout === 'inline' ? 'inline-block' : 'block' }}
-          >
+        const slots = {
+          default: () => (
             <el-form-item
               prop={ item.field }
               label={ item.label }
@@ -119,7 +111,45 @@ function normalize (formItems: FormItem[]) {
                 v-model={ data.value[item.field || ''] }
               />
             </el-form-item>
-          </cl-drag>
+          ),
+          helper: () => (
+            <div class="drag-toolbar">
+              <cl-icon
+                icon={ 'el-icon-document-copy' }
+                size={ 14 }
+                color={ '#fff' }
+                onClick={
+                  (ev: MouseEvent) => {
+                    ev.stopPropagation()
+                    emit('copy', index)
+                  }
+                }
+              />
+              <cl-icon
+                icon={ 'el-icon-delete' }
+                size={ 14 }
+                color={ '#fff' }
+                onClick={
+                  (ev: MouseEvent) => {
+                    ev.stopPropagation()
+                    emit('remove', index)
+                  }
+                }
+              />
+            </div>
+          )
+        }
+        return (
+          <cl-drag
+            tag={ 'div' }
+            group={ 'cl-form-desiner' }
+            data={ index }
+            onClick={ handleSelect(index) }
+            onDrop={ handleMove(index) }
+            class={{ 'drag-com': true, selected: props.selectIndex === index }}
+            style={{ display: props.config.layout === 'inline' ? 'inline-block' : 'block' }}
+            v-slots={ slots }
+          />
         )
       },
       field: undefined,
@@ -142,14 +172,24 @@ init()
 
 <style lang="less">
 .drag-com {
-  // padding: 10px;
-  border: 1px dashed transparent;
+  border: 2px solid transparent;
   transition: border .3s;
-  &.selected {
-    border: 1px dashed #60a5fa;
+  .cl-drag__helper {
+    display: none;
   }
-  .el-form-item {
-    margin-bottom: 0 !important;
+  &.selected {
+    border: 2px solid #60a5fa;
+    .cl-drag__helper {
+      height: 22px;
+      display: flex;
+      align-items: center;
+      background-color: #60a5fa;
+      cursor: pointer;
+      .drag-toolbar {
+        padding: 0 4px;
+        font-size: 0;
+      }
+    }
   }
 }
 </style>
