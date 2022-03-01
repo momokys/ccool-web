@@ -19,21 +19,21 @@
       >
         导出代码
       </el-button>
-      <el-button
+      <!-- <el-button
         type="danger"
         size="small"
         plain
         class="ml-2"
-        @click="remove"
+        @click="handleRemove"
       >
         删除
-      </el-button>
+      </el-button> -->
       <el-button
         type="danger"
         size="small"
         plain
         class="ml-2"
-        @click="clear"
+        @click="handleClear"
       >
         清空
       </el-button>
@@ -54,7 +54,9 @@
           :select-index="selectIdx"
           @select="handleSelect"
           @insert="handleInsert"
+          @remove="handleRemove"
           @move="handleMove"
+          @copy="handleCopy"
         />
       </div>
       <div class="w-64 p-2 border-l-1 border-r-1 border-b-1">
@@ -153,7 +155,38 @@ function handleMove (src: number, dest: number) {
   const tmp = config.value.formItems[dest]
   config.value.formItems[dest] = config.value.formItems[src]
   config.value.formItems[src] = tmp
+  // if (src > dest) {
+  //   config.value.formItems.splice(dest, 0, config.value.formItems[src])
+  //   config.value.formItems.splice(src < dest ? src : src + 1, 1)
+  // }
+  // config.value.formItems.splice(dest, 0, config.value.formItems[src])
+  // config.value.formItems.splice(src < dest ? src : src + 1, 1)
   selectIdx.value = dest
+}
+
+function handleRemove (index: any) {
+  if (index === config.value.formItems.length - 1) {
+    selectIdx.value = selectIdx.value - 1
+  }
+  config.value.formItems.splice(index, 1)
+}
+
+function handleCopy (index: number) {
+  const c = { ...config.value.formItems[index] }
+  comEditorConfigMap
+    .get(c.com)()
+    .then((res: any) => {
+      config.value.formItems.push(c)
+      comEditorConfig.value = res.default
+      selectIdx.value = config.value.formItems.length - 1
+      comEditorRef.value?.refresh()
+      activeName.value = 'com'
+    })
+}
+
+function handleClear () {
+  selectIdx.value = -1
+  config.value.formItems = []
 }
 
 function previewJson () {
@@ -220,19 +253,6 @@ function exportCode () {
       }
     ]
   })
-}
-
-function remove () {
-  const index = selectIdx.value
-  if (selectIdx.value === config.value.formItems.length - 1) {
-    selectIdx.value = selectIdx.value - 1
-  }
-  config.value.formItems.splice(index, 1)
-}
-
-function clear () {
-  selectIdx.value = -1
-  config.value.formItems = []
 }
 
 </script>

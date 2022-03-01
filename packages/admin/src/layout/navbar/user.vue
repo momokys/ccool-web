@@ -25,7 +25,7 @@
 import { useRouter } from 'vue-router'
 import { useUser } from '@/store'
 import routeConfig from '@/config/route'
-import avatarUrl from '@/assets/image/avatar.png'
+import avatarUrl from '@/assets/image/avatar.gif'
 
 const router = useRouter()
 const user = useUser()
