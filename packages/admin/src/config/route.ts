@@ -1,5 +1,5 @@
 export default {
   homeName: 'Home',
   loginName: 'Login',
-  pernitList: ['Login']
+  permitList: ['Login']
 }
