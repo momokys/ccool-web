@@ -14,7 +14,7 @@ export function globalBeforeGuard (router: Router) {
     nprogress.start()
     const user = useUser()
     const menu = useMenu()
-    if (!user.hasLogin() && !routeConfig.pernitList.includes(to.name as string)) {
+    if (!user.hasLogin() && !routeConfig.permitList.includes(to.name as string)) {
       // 未登录，并且不是白名单
       next({ name: routeConfig.loginName })
     } else if (user.hasLogin() && !user.hasGetInfo) {

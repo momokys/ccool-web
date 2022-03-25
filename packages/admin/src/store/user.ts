@@ -1,6 +1,6 @@
 import { defineStore } from 'pinia'
 import userApi from '@/api/user'
-import { setToken, getToken, removeToken } from '@/http/cookie'
+import { setToken, getToken, removeToken } from '@/http/token'
 import { useMenu } from '.'
 
 export const useUser = defineStore({
