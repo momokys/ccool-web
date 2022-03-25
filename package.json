@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.ts",
   "scripts": {
+    "dev": "pnpm run dev --filter @ccool/admin",
     "build": "pnpm run build --filter @ccool/admin",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

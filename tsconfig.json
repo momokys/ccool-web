@@ -1,10 +1,11 @@
 {
-	"compilerOptions": {                  
+	"compilerOptions": {
 		"target": "esnext" ,
 		"module": "esnext" ,
 		"lib": ["esnext", "dom", "dom.iterable", "scripthost"] ,
-		"allowJs": true,                       
-		"checkJs": true,                       
+		"allowJs": true,
+		"checkJs": true,
+    "sourceMap": true,
 		"jsx": "preserve" ,
 		"strict": true ,
 		"moduleResolution": "node" ,
@@ -17,7 +18,7 @@
 		"esModuleInterop": true ,
 		"experimentalDecorators": true ,
 		"skipLibCheck": true ,
-		"forceConsistentCasingInFileNames": true 
+		"forceConsistentCasingInFileNames": true
 	},
 	"exclude": [
 		"node_modules",
