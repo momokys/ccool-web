@@ -53,7 +53,7 @@ const columns: TableColumn[] = [
 
 async function qryAllMenus () {
   const res = await menuApi.qryAllMenus()
-  menuTrees.value = listToTrees(res.data, {
+  menuTrees.value = listToTrees((res.data || []), {
     root: 0,
     id: 'menuId',
     parentId: 'parentId',

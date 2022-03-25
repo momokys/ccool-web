@@ -3,7 +3,7 @@ import { layer } from '@ccool/ui'
 import router from '@/router'
 import http from '@/config/http'
 import route from '@/config/route'
-import { getToken, removeToken } from './cookie'
+import { getToken, removeToken } from './token'
 
 const service = axios.create({
   baseURL: http.baseURL,

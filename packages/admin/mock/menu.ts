@@ -1,5 +1,5 @@
 export default {
-  url: '/api/system/menu/all',
+  url: '/api/uaa/menu/all',
   method: 'GET',
   respose: () => ({
     data: [
